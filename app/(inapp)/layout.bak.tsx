@@ -1,21 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-import React, { useEffect } from 'react';
-
-import { Button } from '@/components/common';
-import { Header } from '@/components/layout/header/Header';
-
-import { SidebarLayoutWrapper } from '../_components/SidebarLayoutWrapper';
-import { useMe } from '@/hooks/user';
-import { RawSystemAnnoucement } from '@/store/types';
-import { useState } from 'react';
-import Fetch from '@/lib/core/fetch/Fetch';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import { usePathname, useRouter } from 'next/navigation';
+import { PropsWithChildren, useEffect, useState } from 'react';
+import NormalLayout from './_components/Layout';
 import { ClientOnly } from '@/components/common/ClientOnly';
+import { useMe } from '@/hooks/user';
+import Fetch from '@/lib/core/fetch/Fetch';
+import { RawSystemAnnoucement } from '@/store/types';
 import { AnnouncementDialog } from '@/components/announcement/AnnouncementDialog';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-
+export default function InappLayout({ children }: PropsWithChildren) {
   const me = useMe();
   const [first_annoucement, setFirstAnnoucement] = useState<RawSystemAnnoucement | null>(null);
   const [login_annoucement, setLoginAnnoucement] = useState<RawSystemAnnoucement | null>(null);
@@ -83,43 +78,31 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [login_annoucement, me]);
 
 
-
-
   return (
     <ClientOnly>
-      <div className="min-h-full">
-        <Header menu={{ subs: null, main: null }} searchUrl="/admin">
-          <Link href="/">
-            <Button type="outline" size="small">
-              Back to app
-            </Button>
-          </Link>
-        </Header>
+        <NormalLayout>
+          {children}
+        </NormalLayout>
 
-        <main className="relative min-h-screen bg-gray-50">
-          <SidebarLayoutWrapper>{children}</SidebarLayoutWrapper>
-        </main>
-      </div>
-      {
-        first_annoucement && (
-          <AnnouncementDialog
-            announcement={first_annoucement}
-            open={showFirstAnnoucement}
-            onClose={() => setShowFirstAnnoucement(false)}
-          />
-        )
-      }
+        {
+          first_annoucement && (
+            <AnnouncementDialog
+              announcement={first_annoucement}
+              open={showFirstAnnoucement}
+              onClose={() => setShowFirstAnnoucement(false)}
+            />
+          )
+        }
 
-      {
-        login_annoucement && (
-          <AnnouncementDialog
-            announcement={login_annoucement}
-            open={showLoginAnnoucement}
-            onClose={() => setShowLoginAnnoucement(false)}
-          />
-        )
-      }
+        {
+          login_annoucement && (
+            <AnnouncementDialog
+              announcement={login_annoucement}
+              open={showLoginAnnoucement}
+              onClose={() => setShowLoginAnnoucement(false)}
+            />
+          )
+        }
     </ClientOnly>
-
-  );
+  )
 }

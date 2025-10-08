@@ -30,14 +30,7 @@ export function Header({ menu, searchUrl, children }: HeaderProps) {
 
   const [{ y }] = useWindowScroll();
 
-  const pathName = usePathname();
 
-  const isAdminPage =
-    pathName.includes('admin') ||
-    pathName.includes('content-creator') ||
-    pathName.includes('teacher');
-
-  const isLandingPage = pathName === '/';
 
   const rightBlock = useMemo(() => {
     if (isLoading) {
@@ -69,15 +62,13 @@ export function Header({ menu, searchUrl, children }: HeaderProps) {
         className={clsx(
           'hidden semi-lg:block py-2 top-0 left-0 z-20 w-full fixed',
           {
-            'shadow-bottom shadow-gray-200': !isLandingPage,
-            'bg-white': Number(y) > 56 || !isLandingPage,
+            'shadow-bottom shadow-gray-200': true,
+            'bg-white': Number(y) > 56 || true,
           }
         )}
       >
         <nav
-          className={clsx('mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8', {
-            'container': !isAdminPage,
-          })}
+          className={clsx('mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8')}
         >
           <div className="flex items-center gap-x-20">
             <Logo />
@@ -96,14 +87,12 @@ export function Header({ menu, searchUrl, children }: HeaderProps) {
       {/* Mobile UI */}
       <header
         className={clsx('semi-lg:hidden py-2 top-0 left-0 z-20 w-full fixed', {
-          'shadow-bottom shadow-gray-200': !isLandingPage,
-          'bg-white': Number(y) > 56 || !isLandingPage,
+          'shadow-bottom shadow-gray-200': true,
+          'bg-white': Number(y) > 56 || true,
         })}
       >
         <nav
-          className={clsx('mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8', {
-            'container': !isAdminPage,
-          })}
+          className={clsx('mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8')}
         >
           <Logo />
 

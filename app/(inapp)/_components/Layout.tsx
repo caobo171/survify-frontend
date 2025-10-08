@@ -44,7 +44,7 @@ export default function NormalLayout({ children }: PropsWithChildren) {
         {children}
       </main>
 
-      <LayoutFooter />
+
     </div>
   );
 }
