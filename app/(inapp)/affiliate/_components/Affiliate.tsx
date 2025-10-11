@@ -30,7 +30,7 @@ export default function AffiliateComponent() {
   }
 
   return (
-    <section className="bg-gradient-to-b from-primary-50 to-white py-12 px-4 sm:px-6 mx-auto">
+    <section className="  py-12 px-4 sm:px-6 mx-auto">
       <div className="max-w-2xl mx-auto" data-aos="fade-up">
         {/* Affiliate Program Information */}
         <div className="bg-white rounded-xl p-8 shadow-md border border-gray-100">

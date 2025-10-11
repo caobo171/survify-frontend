@@ -59,8 +59,8 @@ export default function DataBuilder() {
 
     return (
         <>
-            <section className="bg-gradient-to-b from-primary-50 to-white mx-auto px-4 sm:px-6">
-                <div className="relative isolate overflow-hidden py-12">
+            <section className="  mx-auto px-4 sm:px-6">
+                <div className=" relative isolate overflow-hidden">
                     {loading && <LoadingAbsolute />}
 
                     <div className="container mx-auto space-y-8" data-aos="fade-up">

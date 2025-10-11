@@ -88,17 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ClientOnly>
       <div className="min-h-full">
-        <Header menu={{ subs: null, main: null }} searchUrl="/admin">
-          <Link href="/">
-            <Button type="outline" size="small">
-              Back to app
-            </Button>
-          </Link>
-        </Header>
-
-        <main className="relative min-h-screen bg-gray-50">
-          <SidebarLayoutWrapper>{children}</SidebarLayoutWrapper>
-        </main>
+        <SidebarLayoutWrapper>{children}</SidebarLayoutWrapper>
       </div>
       {
         first_annoucement && (

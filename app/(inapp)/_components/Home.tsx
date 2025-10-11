@@ -25,7 +25,7 @@ export default function HomePage() {
     }
 
     return (
-        <section className="bg-gradient-to-b from-primary-50 to-white py-8 px-4">
+        <section className="   ">
             <div className="container mx-auto space-y-8" data-aos="fade-up">
                 {/* User Info */}
                 <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">

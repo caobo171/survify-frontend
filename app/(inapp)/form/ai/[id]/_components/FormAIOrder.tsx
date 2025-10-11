@@ -307,7 +307,7 @@ export default function FormAIOrder() {
                 toggleChat={toggleChat}
                 removeChatError={removeChatError}
             />
-            <section className="bg-gradient-to-b from-primary-50 to-white">
+            <section className=" ">
                 <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
                     <div className="container mx-auto mb-8">
                         <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Điền form bằng AI Agent</h1>

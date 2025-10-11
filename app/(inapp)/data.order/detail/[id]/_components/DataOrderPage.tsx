@@ -142,7 +142,7 @@ const DataOrderPage = () => {
 
 
     return (
-        <section className="bg-gradient-to-b from-primary-50 to-white py-12 mx-auto px-4 sm:px-6">
+        <section className="  py-12 mx-auto px-4 sm:px-6">
             {isFetching ? <LoadingAbsolute /> : <></>}
             <div className="container mx-auto text-center" data-aos="fade-up">
                 <div className="mb-10">

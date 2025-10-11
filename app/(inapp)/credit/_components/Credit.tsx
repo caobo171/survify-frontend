@@ -17,8 +17,8 @@ const CreditPage: FC<{}> = () => {
     const [endTime, setEndTime] = useState('20:00');
 
     return (
-        <section className="bg-gradient-to-b from-primary-50 to-white mx-auto px-4 sm:px-6">
-            <div className="relative isolate overflow-hidden py-12">
+        <section className="  mx-auto px-4 sm:px-6">
+            <div className=" relative isolate overflow-hidden">
                 <div className="container mx-auto" data-aos="fade-up">
                     {/* Header */}
                     <div className="mb-8 text-center">

@@ -89,7 +89,7 @@ export default function FormRateOrder() {
     };
 
     return (
-        <section id="about" className="bg-gradient-to-b from-primary-50 to-white py-10 mx-auto px-4 sm:px-6">
+        <section id="about" className="  py-10 mx-auto px-4 sm:px-6">
             <div className="container mx-auto text-center min-h-screen" data-aos="fade-up">
                 <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-sm p-6 sm:mt-12 border border-gray-100">
 

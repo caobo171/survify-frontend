@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React, { Suspense } from 'react';
 
-import Users from '@/app/admin/users/_components/Users';
+import Users from '@/app/(inapp)/admin/users/_components/Users';
 
 export const metadata: Metadata = {
   title: 'Users - Admin - Fillform',

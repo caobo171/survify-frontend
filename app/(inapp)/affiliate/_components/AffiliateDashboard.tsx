@@ -107,7 +107,7 @@ export default function AffiliateDashboard() {
   }
 
   return (
-    <section className="bg-gradient-to-b from-primary-50 to-white min-h-screen py-6 px-4 sm:px-6 mx-auto">
+    <section className="  min-h-screen py-6 px-4 sm:px-6 mx-auto">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up">
         {/* Left Column */}
         <div className="space-y-6">

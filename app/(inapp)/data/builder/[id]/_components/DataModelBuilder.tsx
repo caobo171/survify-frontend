@@ -204,7 +204,7 @@ export default function DataModelBuilder() {
 
     return (
         <>
-            <section className="bg-gradient-to-b from-primary-50 to-white">
+            <section className=" ">
                 <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
                     {(loading) && <LoadingAbsolute />}
                     <div className="container mx-auto mb-8">

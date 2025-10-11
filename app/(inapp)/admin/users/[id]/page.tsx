@@ -85,7 +85,7 @@ export default function UserDetailPage() {
                     </FormItem>
                 </div>
             </Modal>
-            <section className="py-8 px-4">
+            <section className=" ">
                 <div className="container mx-auto space-y-8">
                     {/* User Info */}
                     <div className="px-4 sm:px-6 lg:px-8">
