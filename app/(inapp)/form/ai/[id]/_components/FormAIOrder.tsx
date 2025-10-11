@@ -274,15 +274,15 @@ export default function FormAIOrder() {
                 Toast.success('Đặt đơn thành công');
                 router.push(`/`);
 
-                // Survey prompt (similar to FormRateOrder)
+                // Survify prompt (similar to FormRateOrder)
                 const win = window as any;
-                if (win.PulseSurvey?.surveyIgnored?.(PULSES_TOKEN)) {
+                if (win.PulseSurvify?.surveyIgnored?.(PULSES_TOKEN)) {
                     console.log('User has ignored the survey');
-                } else if (win.PulseSurvey?.surveyResponded?.(PULSES_TOKEN)) {
+                } else if (win.PulseSurvify?.surveyResponded?.(PULSES_TOKEN)) {
                     console.log('User has answered the survey');
-                } else if (win.PulseSurvey?.showSurvey) {
+                } else if (win.PulseSurvify?.showSurvify) {
                     // Show survey directly
-                    win.PulseSurvey.showSurvey(PULSES_TOKEN);
+                    win.PulseSurvify.showSurvify(PULSES_TOKEN);
                 }
             } else {
                 Toast.error(response.data.message || 'Có lỗi xảy ra');

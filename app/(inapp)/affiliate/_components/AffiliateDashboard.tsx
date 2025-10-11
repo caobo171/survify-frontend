@@ -191,7 +191,7 @@ export default function AffiliateDashboard() {
             <h3 className="text-lg font-medium text-blue-800 mb-2">Quyền lợi của bạn:</h3>
             <ul className="space-y-2 text-sm text-blue-700">
               <li>- Chỉ được tính affiliate với tài khoản giới thiệu đăng kí mới.</li>
-              <li>- FillForm sẽ tặng bạn {REFER_PERCENT}% trên mỗi giao dịch nạp tiền thành công của người được giới thiệu.</li>
+              <li>- Survify sẽ tặng bạn {REFER_PERCENT}% trên mỗi giao dịch nạp tiền thành công của người được giới thiệu.</li>
               <li>- Hoa hồng phải đạt 100.000 VND mới được yêu cầu rút tiền.</li>
               <li>- Tài khoản đang bị lỗi hoặc lạm dụng, spam sẽ bị từ chối tính affiliate.</li>
             </ul>
@@ -207,7 +207,7 @@ export default function AffiliateDashboard() {
           <div className="bg-white rounded-lg p-6 shadow-sm">
             <h2 className="text-xl font-bold mb-4">Chương trình affiliate</h2>
             <p className="mb-3">Giới thiệu ngay để nhận {REFER_PERCENT}% mỗi giao dịch tự động</p>
-            <p className="mb-4">Copy link dưới đây và chia sẻ với bạn bè để đăng ký dùng FillForm nhé!</p>
+            <p className="mb-4">Copy link dưới đây và chia sẻ với bạn bè để đăng ký dùng Survify nhé!</p>
             
             {/* Referral Link */}
             <div className="mb-4">

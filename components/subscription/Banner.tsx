@@ -4,7 +4,7 @@ import DateUtil from "@/services/Date";
 export const SubscriptionBanner = () => {
 
 
-	let sub_text = 'Upgrade your plan to access more power of Fillform';
+	let sub_text = 'Upgrade your plan to access more power of Survify';
 	let free_trial = ''
 
 	// if (sub) {

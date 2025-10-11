@@ -3,8 +3,8 @@ import Users from './users/_components/Users';
 
 
 export const metadata: Metadata = {
-  title: 'Users - Admin - Fillform',
-  description: 'Users - Admin - Fillform',
+  title: 'Users - Admin - Survify',
+  description: 'Users - Admin - Survify',
   alternates: {
     canonical: 'https://app.survify.info/admin/users',
   },

@@ -16,7 +16,7 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(MetaData.landingPageDomain),
-        title: 'Fillform - Build dữ liệu đẹp',
+        title: 'Survify - Build dữ liệu đẹp',
         description: MetaData.defaultDescription,
         alternates: {
             canonical: MetaData.defaultCanonical,

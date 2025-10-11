@@ -4,8 +4,8 @@ import React, { Suspense } from 'react';
 import Users from '@/app/(inapp)/admin/users/_components/Users';
 
 export const metadata: Metadata = {
-  title: 'Users - Admin - Fillform',
-  description: 'Users - Admin - Fillform',
+  title: 'Users - Admin - Survify',
+  description: 'Users - Admin - Survify',
 };
 
 export default function Page() {

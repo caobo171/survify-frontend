@@ -70,7 +70,7 @@ export default function Login() {
 
   return (
     <>
-      <Meta title="Fillform | Đăng nhập" />
+      <Meta title="Survify | Login" />
 
       <div className="w-screen h-screen bg-cover bg-center bg-[url('/static/background_index.jpg')]">
         <div className="relative bg-white flex flex-col h-full justify-center items-center xl:w-1/2 2xl:w-[736px] px-6 sm:px-0">
@@ -84,11 +84,11 @@ export default function Login() {
             </Link>
 
             <h1 className="text-2xl leading-8 font-medium text-gray-900 mb-2">
-              Đăng nhập
+              Login
             </h1>
 
             <p className="mb-10 text-gray-500">
-              Chào mừng bạn quay trở lại với Fillform
+              Welcome back to Survify
             </p>
 
             <form
@@ -123,7 +123,7 @@ export default function Login() {
               <div className="mb-8 flex items-center justify-between">
                 <Controller
                   render={({ field }) => (
-                    <Checkbox {...field}>Nhớ tài khoản</Checkbox>
+                    <Checkbox {...field}>Remember me</Checkbox>
                   )}
                   name="keep_login"
                   control={control}
@@ -133,21 +133,21 @@ export default function Login() {
                   href="/authentication/forgot-password"
                   className="text-primary hover:text-primary-700"
                 >
-                  Quên mật khẩu?
+                  Forgot password?
                 </Link>
               </div>
 
               <Button className="w-full" size="large" loading={isSubmitting}>
-                Đăng nhập
+                Login
               </Button>
 
               <p className="left mt-4">
-                Bạn chưa có tài khoản? &nbsp;
+                You don't have an account? &nbsp;
                 <Link
                   href="/authentication/register"
                   className="text-primary hover:text-primary-700"
                 >
-                  Đăng kí ngay
+                  Register now
                 </Link>
               </p>
             </form>

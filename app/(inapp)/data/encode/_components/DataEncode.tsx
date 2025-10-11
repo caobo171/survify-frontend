@@ -90,7 +90,7 @@ export default function DataEncode() {
     };
 
     return (
-        <section className="  mx-auto px-4 sm:px-6">
+        <section className=" ">
             <div className=" relative isolate overflow-hidden">
                 {loading && <LoadingAbsolute />}
 
@@ -197,7 +197,7 @@ export default function DataEncode() {
                                     <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-blue-800 mt-4">
                                         <p>
                                             <strong className="text-blue-600">Lưu ý: </strong>
-                                            File CSV được tạo ra sẽ chứa dữ liệu đã được mã hóa, giúp bạn điền form nhanh chóng hơn với FillForm.
+                                            File CSV được tạo ra sẽ chứa dữ liệu đã được mã hóa, giúp bạn điền form nhanh chóng hơn với Survify.
                                         </p>
                                     </div>
                                 </div>

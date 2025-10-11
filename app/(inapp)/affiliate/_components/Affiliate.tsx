@@ -44,7 +44,7 @@ export default function AffiliateComponent() {
               <h2 className="text-xl font-semibold mb-3 text-primary-700">Quyền lợi của bạn:</h2>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
                 <li>Chỉ được tính affiliate với tài khoản giới thiệu đăng kí mới.</li>
-                <li>FillForm sẽ tặng bạn <span className="font-semibold text-primary-600">{REFER_PERCENT}%</span> trên mỗi giao dịch nạp tiền/thanh công của người được giới thiệu.</li>
+                <li>Survify sẽ tặng bạn <span className="font-semibold text-primary-600">{REFER_PERCENT}%</span> trên mỗi giao dịch nạp tiền/thanh công của người được giới thiệu.</li>
                 <li>Hoa hồng phải đạt <span className="font-semibold text-primary-600">{MIN_DRAW_CREDIT.toLocaleString()} VND</span> mới được yêu cầu rút tiền.</li>
                 <li>Tài khoản đăng kí lại hoặc lạm dụng, spam sẽ bị từ chối tính affiliate.</li>
               </ul>

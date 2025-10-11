@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
 function Meta({
-  title = 'Fillform - Điền đơn tự động',
+  title = 'Survify - Điền đơn tự động',
   keywords = 'Điền đơn tự động, tự học tiếng anh, học tiếng anh miễn phí',
   url = '',
   image = '',
-  description = 'Fillform là chương trình luyện nghe Tiếng Anh miễn phí và sử dụng phương pháp nghe chép chính tả.',
+  description = 'Survify là chương trình luyện nghe Tiếng Anh miễn phí và sử dụng phương pháp nghe chép chính tả.',
 }: {
   title: string;
   keywords?: string;
@@ -31,7 +31,7 @@ function Meta({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url || 'https://app.survify.info/'} />
-      <meta property="og:site_name" content="Fillform" />
+      <meta property="og:site_name" content="Survify" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta

@@ -59,7 +59,7 @@ export default function DataBuilder() {
 
     return (
         <>
-            <section className="  mx-auto px-4 sm:px-6">
+            <section className=" ">
                 <div className=" relative isolate overflow-hidden">
                     {loading && <LoadingAbsolute />}
 

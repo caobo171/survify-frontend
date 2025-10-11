@@ -35,7 +35,7 @@ const AppWrapper = ({ children }: { children: ReactElement }) => {
 
 			//@ts-ignore
 			const win = window as any;
-			win.PulseSurvey({
+			win.PulseSurvify({
 				write_key: 'C2zDGLbBAc6ABGb79ADdUQcimYyK63fsyVIcBwHKMHhjT-b7IO3kAINFiHdSQMrYbge7w8KEexA_YjyFWe-MXc5WceAwHkRIj0Rvr-XwT00', // Required
 				email: me.data?.email, // Required
 				name: me.data?.username, // Required

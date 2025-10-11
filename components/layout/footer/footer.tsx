@@ -24,7 +24,7 @@ const navigation = {
     },
     {
       name: 'Youtube',
-      href: 'https://www.youtube.com/@FillForm-info',
+      href: 'https://www.youtube.com/@Survify-info',
       icon: '/static/svg/youtube.svg',
     },
     {
@@ -109,7 +109,7 @@ export function LayoutFooter() {
         </div>
 
         <div className="text-sm text-gray-500 py-6 border-t border-solid border-gray-100">
-          © Copyright {new Date().getFullYear()} - Fillform
+          © Copyright {new Date().getFullYear()} - Survify
         </div>
       </Container>
     </footer>

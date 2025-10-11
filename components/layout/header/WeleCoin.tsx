@@ -64,7 +64,7 @@ export function WeleCoin({ data, isPremium }: WeleCoinProps) {
     >
       <div className="py-2 px-2 text-sm text-gray-900">
         <h4 className="text-base font-semibold text-gray-900 mb-2">
-          Fillform Coin
+          Survify Coin
         </h4>
 
         <p className="mb-5">
@@ -122,7 +122,7 @@ export function WeleCoin({ data, isPremium }: WeleCoinProps) {
           >
             cách kiếm thêm
           </a>{' '}
-          Fillform Coin bạn nhé.
+          Survify Coin bạn nhé.
         </p>
       </div>
     </Popover>

@@ -110,7 +110,7 @@ export default function Register() {
 
   return (
     <>
-      <Meta title="Fillform | Đăng kí tài khoản" />
+      <Meta title="Survify | Đăng kí tài khoản" />
 
       <div className="w-screen h-screen bg-cover bg-center bg-[url('/static/background_index.jpg')]">
         <div className="relative bg-white flex flex-col h-full justify-center items-center xl:w-1/2 2xl:w-[736px] px-6 sm:px-0">
@@ -127,7 +127,7 @@ export default function Register() {
               Đăng kí tài khoản
             </h1>
 
-            <p className="mb-10 text-gray-500">Chào mừng bạn đến với Fillform</p>
+            <p className="mb-10 text-gray-500">Chào mừng bạn đến với Survify</p>
 
             <form
               onSubmit={handleSubmit(onSubmit)}

@@ -145,13 +145,13 @@ export default function PrefillRun() {
 
                 const win = window as any;
                 //@ts-ignore
-                if (win.PulseSurvey.surveyIgnored?.(PULSES_TOKEN)) {
+                if (win.PulseSurvify.surveyIgnored?.(PULSES_TOKEN)) {
                     console.log('User has ignored the survey');
-                } else if (win.PulseSurvey.surveyResponded?.(PULSES_TOKEN)) {
+                } else if (win.PulseSurvify.surveyResponded?.(PULSES_TOKEN)) {
                     console.log('User has answered the survey');
                 } else {
                     // You can call to show survey directly
-                    win.PulseSurvey.showSurvey?.(PULSES_TOKEN);
+                    win.PulseSurvify.showSurvify?.(PULSES_TOKEN);
                 }
 
             } else {
@@ -667,7 +667,7 @@ export default function PrefillRun() {
                                     <div className="relative rounded-md overflow-hidden shadow-md border border-gray-200">
                                         <Image
                                             src="/static/img/prefill-s1.png"
-                                            alt="Fillform Step 1"
+                                            alt="Survify Step 1"
                                             width={500}
                                             height={300}
                                             className="w-full object-contain"
@@ -701,7 +701,7 @@ export default function PrefillRun() {
                                     <div className="relative rounded-md overflow-hidden shadow-md border border-gray-200">
                                         <Image
                                             src="/static/img/prefill-s3.png"
-                                            alt="Fillform Step 2"
+                                            alt="Survify Step 2"
                                             width={500}
                                             height={300}
                                             className="w-full object-contain"
@@ -743,7 +743,7 @@ export default function PrefillRun() {
                                     <div className="relative rounded-md overflow-hidden shadow-md border border-gray-200">
                                         <Image
                                             src="/static/img/prefill-s2.png"
-                                            alt="Fillform Step 3"
+                                            alt="Survify Step 3"
                                             width={500}
                                             height={300}
                                             className="w-full object-contain"

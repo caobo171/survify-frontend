@@ -64,13 +64,13 @@ export default function FormRateOrder() {
 
                 const win = window as any;
                 //@ts-ignore
-                if (win.PulseSurvey.surveyIgnored?.(PULSES_TOKEN)) {
+                if (win.PulseSurvify.surveyIgnored?.(PULSES_TOKEN)) {
                     console.log('User has ignored the survey');
-                } else if (win.PulseSurvey.surveyResponded(PULSES_TOKEN)) {
+                } else if (win.PulseSurvify.surveyResponded(PULSES_TOKEN)) {
                     console.log('User has answered the survey');
                 } else {
                     // You can call to show survey directly
-                    win.PulseSurvey.showSurvey(PULSES_TOKEN);
+                    win.PulseSurvify.showSurvify(PULSES_TOKEN);
                 }
             } else {
                 Toast.error(response.data?.message || 'Đã xảy ra lỗi, vui lòng thử lại!');

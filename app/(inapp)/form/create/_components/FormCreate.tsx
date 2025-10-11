@@ -32,9 +32,9 @@ export default function FormCreate() {
         watch,
         formState: { isSubmitting, errors },
     } = useForm<CreateFormValues>();
-    
+
     const formLink = watch('form_link');
-    
+
     useEffect(() => {
         if (formLink && formLink?.includes('/viewform')) {
             setIsViewFormLink(true);
@@ -49,7 +49,7 @@ export default function FormCreate() {
             setMsg('Vui lòng nhập đường dẫn edit form!');
             return;
         }
-        
+
         if (formData?.form_link.includes('/viewform')) {
             setMsg('Bạn đang sử dụng link xem form (/viewform). Vui lòng sử dụng link edit form (/edit) thay thế!');
             return;
@@ -62,7 +62,7 @@ export default function FormCreate() {
                 form_link: formData?.form_link,
             });
 
-            if (res.data?.form){
+            if (res.data?.form) {
                 Toast.success('Tạo form thành công!');
                 router.push(`/form/${res.data?.form?.id}`);
             }
@@ -75,31 +75,33 @@ export default function FormCreate() {
     };
 
     return (
-        <section className="  mx-auto px-4 sm:px-6">
+        <section className=" ">
             <div className=" relative isolate overflow-hidden">
                 {loading && <LoadingAbsolute />}
 
                 <div className="container mx-auto" data-aos="fade-up">
                     {/* Header */}
-                    <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold mb-3">Tạo Form mới</h2>
+                    <div className="mb-8 text-left">
+                        <h2 className="text-3xl font-bold mb-3">
+                            Clone <span className="text-blue-600">Survey Data</span>
+                        </h2>
                         <p className="text-gray-600">
-                            Nhập link edit form của bạn vào ô dưới đây. Hãy đọc kĩ hướng dẫn để tránh sai sót.
+                            Please read the instruction and view demo carefully
                         </p>
                     </div>
 
                     {/* Form Section */}
                     <div className="bg-white shadow-sm rounded-lg border border-gray-100 mb-6">
                         <form onSubmit={handleSubmit(onSubmit)} className="p-6">
-                            <InlineFormItem 
-                                label="Điền Edit Link Form" 
+                            <InlineFormItem
+                                label="Enter Edit Link Form"
                                 className="mb-6"
                                 error={errors.form_link?.message}
                             >
                                 <Controller
                                     render={({ field }) => (
                                         <Input
-                                            placeholder="Ví dụ: https://docs.google.com/forms/d/xxx/edit"
+                                            placeholder="Example: https://docs.google.com/forms/d/xxx/edit"
                                             className="w-full"
                                             {...field}
                                             size="large"
@@ -111,13 +113,13 @@ export default function FormCreate() {
                                 />
                             </InlineFormItem>
 
-                            <Button 
-                                htmlType="submit" 
-                                className="uppercase items-center mt-4 w-full block text-center py-3 px-4 bg-primary-600 text-white font-bold rounded-md hover:bg-primary-700 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2" 
-                                size="large" 
+                            <Button
+                                htmlType="submit"
+                                className="uppercase items-center mt-4 w-full block text-center py-3 px-4 bg-primary-600 text-white font-bold rounded-md hover:bg-primary-700 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                                size="large"
                                 loading={isSubmitting || loading}
                             >
-                                <span>Tạo ngay</span>
+                                <span>Get Survey Data Now</span>
                             </Button>
                         </form>
 
@@ -125,31 +127,31 @@ export default function FormCreate() {
                         {msg && (
                             <div className="mt-4">
                                 <div className="bg-red-100 border border-red-200 text-red-700 px-4 py-3 rounded text-center flex items-center gap-2 justify-center">
-                                    <XCircle className="w-5 h-5 flex-shrink-0" /> 
+                                    <XCircle className="w-5 h-5 flex-shrink-0" />
                                     <span>{msg}</span>
                                 </div>
                             </div>
                         )}
-                        
+
                         {/* ViewForm Link Warning */}
                         {isViewFormLink && (
                             <div className="mt-4">
                                 <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
                                     <h4 className="text-red-700 font-bold mb-2 flex items-center gap-2">
                                         <XCircle className="w-5 h-5" />
-                                        Bạn đang sử dụng link xem form (/viewform)
+                                        You are using view form link (/viewform)
                                     </h4>
                                     <p className="text-red-700 mb-4">
-                                        Vui lòng sử dụng link <strong>edit form</strong> có đuôi <strong>/edit</strong> thay vì link xem form có đuôi <strong>/viewform</strong>.
+                                        Please use the <strong>edit form</strong> link with the <strong>/edit</strong> suffix instead of the view form link with the <strong>/viewform</strong> suffix.
                                     </p>
                                     <div className="bg-white p-3 rounded border border-red-100 mb-3">
-                                        <p className="text-sm font-medium text-gray-700 mb-2">Link xem form (không đúng):</p>
+                                        <p className="text-sm font-medium text-gray-700 mb-2">Link view form (wrong):</p>
                                         <p className="text-xs bg-red-50 p-2 rounded overflow-auto text-red-700 font-mono">
                                             https://docs.google.com/forms/d/xxx/viewform
                                         </p>
                                     </div>
                                     <div className="bg-white p-3 rounded border border-green-100">
-                                        <p className="text-sm font-medium text-gray-700 mb-2">Link edit form (đúng):</p>
+                                        <p className="text-sm font-medium text-gray-700 mb-2">Link edit form (correct):</p>
                                         <p className="text-xs bg-green-50 p-2 rounded overflow-auto text-green-700 font-mono">
                                             https://docs.google.com/forms/d/xxx/edit
                                         </p>
@@ -170,7 +172,7 @@ export default function FormCreate() {
 
                     {/* Storylane Demo Section - After Input Form */}
                     <div className="border border-primary-100 rounded-lg overflow-hidden bg-primary-50 mb-4">
-                        <h3 className="text-lg font-bold px-4 py-2 bg-primary-100 border-b border-primary-200 text-primary-800">Xem Demo Trực Quan</h3>
+                        <h3 className="text-lg font-bold px-4 py-2 bg-primary-100 border-b border-primary-200 text-primary-800">Interactive Demo</h3>
                         <div className="p-4">
                             <iframe
                                 src="https://app.storylane.io/demo/3ad9zgkguwpw?embed=inline"
@@ -188,22 +190,22 @@ export default function FormCreate() {
                         {/* Warning Note */}
                         <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4 text-yellow-800">
                             <p className="font-medium">
-                                <strong className="text-yellow-600">Lưu ý quan trọng: </strong>
-                                Nếu bạn <strong>thao tác lần đầu</strong>, hãy tạo bản sao cho form của mình và thực hiện trên bản sao trước nhé!
+                                <strong className="text-yellow-600">Important Note: </strong>
+                                If you <strong>first time</strong>, please create a copy of your form and perform on the copy before!
                             </p>
                         </div>
 
                         <div className="border border-gray-100 rounded-lg overflow-hidden">
-                            <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">Hướng Dẫn Chi Tiết</h3>
-                            
+                            <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">Guide</h3>
+
                             {/* Step 1 */}
                             <div className="p-6 border-b border-gray-100">
                                 <div className="grid md:grid-cols-2 gap-8 items-center">
                                     <div className="text-left">
-                                        <p className="font-bold mb-2 text-gray-900">Bước 1: Copy đường dẫn edit</p>
+                                        <p className="font-bold mb-2 text-gray-900">Step 1: Copy edit link</p>
                                         <p className="mb-2 text-gray-700">
-                                            Copy đường dẫn edit của form vào ô phía trên. Đường dẫn edit lấy từ trang chỉnh sửa form của bạn,
-                                            <strong> phải có đuôi /edit</strong>. Ví dụ:
+                                            Copy the edit link of the form into the field above. The edit link is taken from the form editing page of you,
+                                            <strong> must have the /edit suffix</strong>. Example:
                                         </p>
                                         <p className="text-xs bg-gray-50 p-2 rounded overflow-auto">
                                             https://docs.google.com/forms/d/1IkrTNv9VlSHbDbFx_tnRXXarN1BaNkzHr9VHtBamkRw/edit
@@ -212,7 +214,7 @@ export default function FormCreate() {
                                     <div>
                                         <Image
                                             src="/static/img/guide-s1.png"
-                                            alt="Fillform Step 1"
+                                            alt="Survify Step 1"
                                             width={600}
                                             height={400}
                                             className="w-full rounded-lg shadow-sm"
@@ -225,24 +227,24 @@ export default function FormCreate() {
                             <div className="p-6 border-b border-gray-100">
                                 <div className="grid md:grid-cols-2 gap-8 items-center">
                                     <div className="text-left">
-                                        <p className="font-bold mb-2 text-gray-900">Bước 2: Mở quyền truy cập form và xuất bản form</p>
+                                        <p className="font-bold mb-2 text-gray-900">Step 2: Open form access and publish form</p>
                                         <p className="text-gray-700">
-                                            Xuất bản form và mở quyền edit cho tất cả các đối tượng.
-                                            <strong> Bạn chỉ cần mở quyền tại bước này</strong>,
-                                            sau khi bạn nhấn "Tạo ngay" và hệ thống lưu dữ liệu thành công, bạn có thể tắt quyền truy cập.
+                                            Publish the form and open the edit permission for all objects.
+                                            <strong> You only need to open the permission at this step</strong>,
+                                            after you click "Create now" and the system saves the data successfully, you can disable the access.
                                         </p>
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <Image
                                             src="/static/img/guide-s21.png"
-                                            alt="Fillform Step 2.1"
+                                            alt="Survify Step 2.1"
                                             width={300}
                                             height={200}
                                             className="w-full rounded-lg shadow-sm"
                                         />
                                         <Image
                                             src="/static/img/guide-s22.png"
-                                            alt="Fillform Step 2.2"
+                                            alt="Survify Step 2.2"
                                             width={300}
                                             height={200}
                                             className="w-full rounded-lg shadow-sm"
@@ -255,27 +257,27 @@ export default function FormCreate() {
                             <div className="p-6">
                                 <div className="grid md:grid-cols-2 gap-8 items-center">
                                     <div className="text-left">
-                                        <p className="font-bold mb-2 text-gray-900">Bước 3: Cấu hình form</p>
+                                        <p className="font-bold mb-2 text-gray-900">Step 3: Configure form</p>
                                         <p className="mb-4 text-gray-700">
-                                            Bạn lưu ý Form <strong>phải tắt thu thập email</strong>,
-                                            &nbsp;<strong>tắt cho phép chỉnh sửa câu trả lời</strong> và
-                                            &nbsp;<strong>phải tắt mỗi mail chỉ điền 1 lần</strong>.
-                                            Hãy cấu hình form như hình bên nhé!
+                                            You need to turn off email collection,
+                                            &nbsp;<strong>disable answer editing</strong> and
+                                            &nbsp;<strong>disable email collection</strong>.
+                                            Configure the form as shown in the image below!
                                         </p>
                                         <p className="text-gray-700">
-                                            Cần hỗ trợ? Liên hệ{' '}
+                                            Need support? Contact{' '}
                                             <a
                                                 href="https://www.facebook.com/survifyvn"
                                                 className="text-primary-600 hover:underline font-medium"
                                             >
-                                                FillForm - Điền form tự động
+                                                Survify - Fill survey automatically
                                             </a>
                                         </p>
                                     </div>
                                     <div>
                                         <Image
                                             src="/static/img/guide-s3.png"
-                                            alt="Fillform Step 3"
+                                            alt="Survify Step 3"
                                             width={600}
                                             height={400}
                                             className="w-full rounded-lg shadow-sm"

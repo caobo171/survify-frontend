@@ -17,7 +17,7 @@ const CreditPage: FC<{}> = () => {
     const [endTime, setEndTime] = useState('20:00');
 
     return (
-        <section className="  mx-auto px-4 sm:px-6">
+        <section className=" ">
             <div className=" relative isolate overflow-hidden">
                 <div className="container mx-auto" data-aos="fade-up">
                     {/* Header */}
@@ -37,7 +37,7 @@ const CreditPage: FC<{}> = () => {
                             <div className="mb-6">
                                 <p className="text-gray-700 mb-4">
                                     Bạn vui lòng chuyển khoản <span className="font-bold">chính xác nội dung chuyển tiền</span> bên dưới hệ thống sẽ tự động cộng tiền cho bạn sau 1 - 3 phút sau khi nhận được tiền.<br />
-                                    Sau khi thấy tài khoản chuyển tiền thành công, thử <span className="font-bold">Đăng xuất và Đăng nhập lại</span> để kiểm tra số dư FillForm nhé! <br />
+                                    Sau khi thấy tài khoản chuyển tiền thành công, thử <span className="font-bold">Đăng xuất và Đăng nhập lại</span> để kiểm tra số dư Survify nhé! <br />
                                     Nếu sau 10 phút từ khi tiền trong tài khoản của bạn bị trừ mà vẫn chưa được cộng tiền vui lòng liên hệ hỗ trợ.
                                 </p>
                             </div>

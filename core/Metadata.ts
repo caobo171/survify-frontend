@@ -6,10 +6,10 @@ class MetaData {
   static defaultKeywords =
     'Điền đơn tự động, ứng dụng điền đơn tự động, ứng dụng điền đơn, google form';
 
-  static defaultTitle = 'Fillform - Điền đơn tự động';
+  static defaultTitle = 'Survify - Điền đơn tự động';
 
   static defaultDescription =
-    'Fillform là ứng dụng để điền đơn tự động.';
+    'Survify là ứng dụng để điền đơn tự động.';
 
   static defaultCanonical = '/';
 

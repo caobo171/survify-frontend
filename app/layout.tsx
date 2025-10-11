@@ -24,13 +24,13 @@ export default function RootLayout({ children }: { children: ReactElement }) {
   return (
     <html lang="en">
       <Meta
-        title="Fillform"
-        description="Fillform - Tạo form điền thông tin, điền rải, điền động, điền tự động"
+        title="Survify"
+        description="Survify - Tạo form điền thông tin, điền rải, điền động, điền tự động"
       />
       <Script>
         {
           `
-          !function(){window.PulseSurvey=window.PulseSurvey||function(){(window.PulseSurvey.q=window.PulseSurvey.q||[]).push(arguments),window.PulseSurvey.app_domain='success.net',window.PulseSurvey.l=1*new Date,window.PulseSurvey.events=window.PulseSurvey.events||[];var e=document.createElement('script'),s=document.getElementsByTagName('script')[0].parentNode;e.async=1,e.src='https://static-success.stdfiles.com/pulses/js/distribute/widget.js',s.appendChild(e);}}();
+          !function(){window.PulseSurvify=window.PulseSurvify||function(){(window.PulseSurvify.q=window.PulseSurvify.q||[]).push(arguments),window.PulseSurvify.app_domain='success.net',window.PulseSurvify.l=1*new Date,window.PulseSurvify.events=window.PulseSurvify.events||[];var e=document.createElement('script'),s=document.getElementsByTagName('script')[0].parentNode;e.async=1,e.src='https://static-success.stdfiles.com/pulses/js/distribute/widget.js',s.appendChild(e);}}();
           
           `
         }

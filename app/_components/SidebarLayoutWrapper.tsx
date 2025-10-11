@@ -1,8 +1,13 @@
 'use client';
 
 import {
+  BookOpenIcon,
   ChartBarIcon,
+  ChartBarSquareIcon,
   CreditCardIcon,
+  CubeIcon,
+  CurrencyDollarIcon,
+  HomeIcon,
   SpeakerWaveIcon,
   UserIcon,
 } from '@heroicons/react/24/outline';
@@ -11,7 +16,6 @@ import { PropsWithChildren, useMemo } from 'react';
 import { SidebarLayout } from '@/components/layout/sidebar/sidebar-layout';
 import { useMe } from '@/hooks/user';
 import { FormInputIcon, ListOrderedIcon } from 'lucide-react';
-import { LayoutFooter } from '@/components/layout/footer/footer';
 
 export function SidebarLayoutWrapper({ children }: PropsWithChildren) {
   const me = useMe();
@@ -23,12 +27,14 @@ export function SidebarLayoutWrapper({ children }: PropsWithChildren) {
         id: 'main',
         name: '',
         options: [
-          { name: 'Tài khoản', href: '/' , icon: UserIcon},
-          { name: 'Tạo form ngay', href: '/form/create' , icon: FormInputIcon},
-          { name: 'Mã hoá data', href: '/data/encode' , icon: ListOrderedIcon},
-          { name: 'Build dữ liệu đẹp', href: '/data/builder', id: 'build_data' , icon: ListOrderedIcon},
-          { name: 'Nạp tiền', href: '/credit' , icon: CreditCardIcon},
-          { name: 'Về survify', href: 'https://survify.info' , icon: SpeakerWaveIcon},
+          { name: 'Dashboard', href: '/' , icon: HomeIcon},
+          { name: 'Fill survey', href: '/form/create' , icon: BookOpenIcon},
+          { name: 'Research model', href: '/data/builder', id: 'build_data' , icon: CubeIcon },
+          { name: 'Data service', href: '/data/encode' , icon: ChartBarSquareIcon},
+
+          { name: 'Credit', href: '/credit' , icon: CurrencyDollarIcon},
+          { name: 'Affiliate', href: '/affiliate' , icon: CreditCardIcon},
+          { name: 'About', href: 'https://survify.info' , icon: SpeakerWaveIcon},
         ],
       },
 

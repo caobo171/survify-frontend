@@ -209,13 +209,13 @@ export default function BuildDataForm() {
 
                 const win = window as any;
                 //@ts-ignore
-                if (win.PulseSurvey?.surveyIgnored?.(PULSES_TOKEN)) {
+                if (win.PulseSurvify?.surveyIgnored?.(PULSES_TOKEN)) {
                     console.log('User has ignored the survey');
-                } else if (win.PulseSurvey?.surveyResponded?.(PULSES_TOKEN)) {
+                } else if (win.PulseSurvify?.surveyResponded?.(PULSES_TOKEN)) {
                     console.log('User has answered the survey');
                 } else {
                     // You can call to show survey directly
-                    win.PulseSurvey?.showSurvey?.(PULSES_TOKEN);
+                    win.PulseSurvify?.showSurvify?.(PULSES_TOKEN);
                 }
             } else {
                 Toast.error(response.data?.message || 'Đã xảy ra lỗi, vui lòng thử lại!');
@@ -680,7 +680,7 @@ export default function BuildDataForm() {
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                     </svg>
-                                    <p>FillForm sẽ cam kết điền form đúng theo tỉ lệ và tất cả giả thuyết trong mô hình</p>
+                                    <p>Survify sẽ cam kết điền form đúng theo tỉ lệ và tất cả giả thuyết trong mô hình</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

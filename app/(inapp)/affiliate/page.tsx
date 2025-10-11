@@ -18,8 +18,8 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(MetaData.landingPageDomain),
-        title: 'Chương trình Affiliate | FillForm',
-        description: 'Tham gia chương trình affiliate của FillForm để nhận hoa hồng từ việc giới thiệu người dùng mới.',
+        title: 'Chương trình Affiliate | Survify',
+        description: 'Tham gia chương trình affiliate của Survify để nhận hoa hồng từ việc giới thiệu người dùng mới.',
         alternates: {
             canonical: MetaData.defaultCanonical,
             languages: MetaData.defaultLanguages,
