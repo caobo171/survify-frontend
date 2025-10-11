@@ -65,12 +65,17 @@ export default function DataBuilder() {
 
                     <div className="container mx-auto space-y-8" data-aos="fade-up">
                         {/* Header */}
-                        <div className="mb-8 text-center">
-                            <h2 className="text-3xl font-bold mb-3">Build dữ liệu đẹp</h2>
+
+                        <div className="mb-8 text-left">
+                            <h2 className="text-3xl font-bold mb-3">
+                                Build <span className="text-blue-600">Research Models</span>
+                            </h2>
                             <p className="text-gray-600">
-                                Build dữ liệu đẹp chuẩn SPSS, SmartPLS, có tính chất nghiên cứu khoá học cao
+                                Build research models in SPSS, SmartPLS standard, data will be used for research purposes
                             </p>
                         </div>
+
+    
 
                         {/* Start Button or Form Section */}
 
@@ -81,7 +86,7 @@ export default function DataBuilder() {
                                         onClick={() => setShowModelBuilder(true)}
                                         className="mt-4 w-full block text-center py-3 px-4 bg-primary-600 text-white font-bold rounded-md hover:bg-primary-700 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                                     >
-                                        <h5>BẮT ĐẦU XÂY DỰNG MÔ HÌNH NCKH</h5>
+                                        <h5>Start building research model</h5>
                                     </button>
                                 </div>
                             ) : (
@@ -90,12 +95,12 @@ export default function DataBuilder() {
                                         <ModelAdvanceBuilder model={model} setModel={setModel} useLocalStorage={true} />
 
                                         {/* Sample Size Input */}
-                                        <FormItem label="Tên của model">
+                                        <FormItem label="Name of model">
                                             <Input
                                                 type="text"
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
-                                                placeholder="Nhập Tên model để lưu"
+                                                placeholder="Enter name of model"
                                             />
                                         </FormItem>
 
@@ -104,7 +109,7 @@ export default function DataBuilder() {
                                                 onClick={() => setShowModelBuilder(false)}
                                                 className="font-bold border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                                             >
-                                                Hủy
+                                                Cancel
                                             </Button>
                                             <Button
                                                 onClick={onSubmitHandle}
@@ -116,7 +121,7 @@ export default function DataBuilder() {
                                                     <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
-                                                    Tạo model mới
+                                                    Create new model
                                                 </div>
                                             </Button>
                                         </div>

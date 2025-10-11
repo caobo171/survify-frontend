@@ -80,9 +80,9 @@ export default function FormLists({ admin }: { admin?: boolean }) {
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold text-gray-900">Tất cả Dữ liệu Forms</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">All Surveys</h1>
           <p className="mt-2 text-sm text-gray-700">
-            Danh sách form
+            List of surveys
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -94,7 +94,7 @@ export default function FormLists({ admin }: { admin?: boolean }) {
               value={search}
               onKeyDown={handleSearch}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Nhấn enter để tìm form"
+              placeholder="Type to search"
               className="col-start-1 row-start-1 block w-full rounded-md bg-white py-1.5 pl-10 pr-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600 sm:pl-9 sm:text-sm/6"
             />
             <SearchIcon
@@ -132,13 +132,13 @@ export default function FormLists({ admin }: { admin?: boolean }) {
                         #
                       </th>
                       <th scope="col" className="py-3.5 md:pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                        Tên form
+                        Survey name
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                        Ngày tạo
+                        Created at
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                        Hành động
+                        Action
                       </th>
                     </tr>
                   </thead>
@@ -164,7 +164,7 @@ export default function FormLists({ admin }: { admin?: boolean }) {
                             onClick={() => router.push(`/form/${form.id}`)}
                             className="rounded bg-primary px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
                           >
-                            Chi tiết
+                            Detail
                           </button>
                         </td>
                       </tr>

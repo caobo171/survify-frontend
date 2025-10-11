@@ -27,14 +27,14 @@ export function SidebarLayoutWrapper({ children }: PropsWithChildren) {
         id: 'main',
         name: '',
         options: [
-          { name: 'Dashboard', href: '/' , icon: HomeIcon},
-          { name: 'Fill survey', href: '/form/create' , icon: BookOpenIcon},
-          { name: 'Research model', href: '/data/builder', id: 'build_data' , icon: CubeIcon },
-          { name: 'Data service', href: '/data/encode' , icon: ChartBarSquareIcon},
+          { name: 'Dashboard', href: '/', icon: HomeIcon },
+          { name: 'Fill survey', href: '/form/create', icon: BookOpenIcon },
+          { name: 'Research model', href: '/data/builder', id: 'build_data', icon: CubeIcon },
+          { name: 'Data service', href: '/data/encode', icon: ChartBarSquareIcon },
 
-          { name: 'Credit', href: '/credit' , icon: CurrencyDollarIcon},
-          { name: 'Affiliate', href: '/affiliate' , icon: CreditCardIcon},
-          { name: 'About', href: 'https://survify.info' , icon: SpeakerWaveIcon},
+          { name: 'Credit', href: '/credit', icon: CurrencyDollarIcon },
+          { name: 'Affiliate', href: '/affiliate', icon: CreditCardIcon },
+          // { name: 'About', href: 'https://survify.info' , icon: SpeakerWaveIcon},
         ],
       },
 

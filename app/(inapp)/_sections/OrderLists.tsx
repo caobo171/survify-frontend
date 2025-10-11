@@ -164,7 +164,7 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                 <div className="sm:flex-auto">
                     <h1 className="text-2xl font-semibold text-gray-900">Orders</h1>
                     <p className="mt-2 text-sm text-gray-700">
-                        Danh sách tất cả các lượt chạy form của bạn
+                        List of all orders
                     </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -173,7 +173,7 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                             id="email"
                             name="email"
                             type="text"
-                            placeholder="Nhấn enter để tìm kiếm order"
+                            placeholder="Type to search"
                             value={query}
                             onChange={(e) => {
                                 setQuery(e.target.value);
@@ -219,19 +219,19 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                 #
                                             </th>
                                             <th scope="col" className="py-3.5 md:pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                                Tên form
+                                                Form name
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Số lượng
+                                                Quantity
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Trạng thái
+                                                Status
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Ngày tạo
+                                                Created at
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Hành động
+                                                Action
                                             </th>
                                         </tr>
                                     </thead>
@@ -281,9 +281,9 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                         <button
                                                             onClick={() => handlePauseOrder(order.id)}
                                                             className="inline-flex items-center p-2 text-red-600 hover:bg-red-50 rounded"
-                                                            title="Tạm dừng"
+                                                            title="Pause"
                                                         >
-                                                            <span className="sr-only">Tạm dừng</span>
+                                                            <span className="sr-only">Pause</span>
                                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                                 <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                                                             </svg>
@@ -292,9 +292,9 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                         <button
                                                             onClick={() => handleContinueOrder(order.id)}
                                                             className="inline-flex items-center p-2 text-green-600 hover:bg-green-50 rounded"
-                                                            title="Tiếp tục chạy"
+                                                            title="Continue"
                                                         >
-                                                            <span className="sr-only">Tiếp tục</span>
+                                                            <span className="sr-only">Continue</span>
                                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                                 <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                                                             </svg>
@@ -303,9 +303,9 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                         <button
                                                             disabled
                                                             className="inline-flex items-center p-2 text-gray-300 hover:bg-gray-50 rounded"
-                                                            title="Tiếp tục chạy"
+                                                            title="Continue"
                                                         >
-                                                            <span className="sr-only">Order đã hoàn thành</span>
+                                                            <span className="sr-only">Order completed</span>
                                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                                 <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                                                             </svg>
@@ -314,9 +314,9 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                     <Link
                                                         href={`/order/detail/${order.id}`}
                                                         className="inline-flex items-center p-2 text-blue-600 hover:bg-blue-50 rounded"
-                                                        title="Xem chi tiết Order"
+                                                        title="View Order details"
                                                     >
-                                                        <span className="sr-only">Chi tiết</span>
+                                                        <span className="sr-only">View details</span>
                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -325,7 +325,7 @@ export default function OrderLists({ admin }: { admin?: boolean }) {
                                                     <button
                                                         onClick={() => window.open(order.url, '_blank', 'noopener,noreferrer')}
                                                         className="inline-flex items-center p-2 text-blue-600 hover:bg-blue-50 rounded"
-                                                        title="Xem Google Form"
+                                                        title="View Google Form"
                                                     >
                                                         <span className="sr-only">Form</span>
                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

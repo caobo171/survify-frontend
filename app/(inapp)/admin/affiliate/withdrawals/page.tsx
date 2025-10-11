@@ -77,13 +77,13 @@ export default function WithdrawalRequests() {
     try {
       const res = await markWithdrawalAsDone(id);
       if (res.data.code === Code.SUCCESS) {
-        Toast.success('Đã đánh dấu yêu cầu rút tiền là hoàn thành');
+        Toast.success('Marked as done successfully');
         withdrawalRequests.mutate();
       } else {
-        Toast.error(res.data.message || 'Có lỗi xảy ra');
+        Toast.error(res.data.message || 'An error occurred');
       }
     } catch (error) {
-      Toast.error('Lỗi khi cập nhật trạng thái yêu cầu');
+      Toast.error('An error occurred');
     } finally {
       setIsLoading(false);
     }
@@ -96,7 +96,7 @@ export default function WithdrawalRequests() {
           <div className="sm:flex-auto">
             <h1 className="text-2xl font-semibold text-gray-900">Affiliate Withdrawal Requests</h1>
             <p className="mt-2 text-sm text-gray-700">
-              Danh sách tất cả các yêu cầu rút tiền affiliate
+              List of withdrawal requests
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -105,7 +105,7 @@ export default function WithdrawalRequests() {
                 id="search"
                 name="search"
                 type="text"
-                placeholder="Nhấn enter để tìm kiếm"
+                placeholder="Type to search"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
@@ -151,19 +151,19 @@ export default function WithdrawalRequests() {
                           #
                         </th>
                         <th scope="col" className="py-3.5 md:pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                          Thông tin tài khoản
+                          Account information
                         </th>
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                          Số tiền
+                          Amount
                         </th>
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                          Trạng thái
+                          Status
                         </th>
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                          Ngày yêu cầu
+                          Request date
                         </th>
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                          Hành động
+                          Action
                         </th>
                       </tr>
                     </thead>
@@ -204,19 +204,19 @@ export default function WithdrawalRequests() {
                               <button
                                 onClick={() => openConfirmation(request.id)}
                                 className="inline-flex items-center gap-1 px-3 py-2 text-green-600 hover:bg-green-50 rounded"
-                                title="Đánh dấu đã thanh toán"
+                                title="Mark as done"
                               >
                                 <CheckCircle className="w-5 h-5" />
-                                <span>Đánh dấu đã thanh toán</span>
+                                <span>Mark as done</span>
                               </button>
                             ) : (
                               <button
                                 disabled
                                 className="inline-flex items-center gap-1 px-3 py-2 text-gray-300 cursor-not-allowed"
-                                title="Đã thanh toán"
+                                title="Marked as done"
                               >
                                 <CheckCircle className="w-5 h-5" />
-                                <span>Đã thanh toán</span>
+                                <span>Marked as done</span>
                               </button>
                             )}
                           </td>
@@ -252,18 +252,18 @@ export default function WithdrawalRequests() {
         title={
           <div className="flex items-center gap-2">
             <AlertCircle className="w-5 h-5 text-amber-500" />
-            <span>Xác nhận thanh toán</span>
+            <span>Confirm</span>
           </div>
         }
-        okText="Xác nhận"
-        cancelText="Hủy"
+        okText="Confirm"
+        cancelText="Cancel"
         okButtonProps={{ type: 'solid', className: 'bg-green-600 hover:bg-green-700' }}
       >
         <p className="text-gray-700">
-          Bạn có chắc chắn muốn đánh dấu yêu cầu rút tiền này là đã thanh toán?
+          Are you sure you want to mark this withdrawal request as done?
         </p>
         <p className="text-gray-700 mt-2">
-          Hành động này không thể hoàn tác sau khi đã xác nhận.
+          This action cannot be undone after confirmation.
         </p>
       </Modal>
     </>

@@ -16,7 +16,7 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(MetaData.landingPageDomain),
-        title: 'Survify - Build dữ liệu đẹp',
+        title: 'Survify - Research Models',
         description: MetaData.defaultDescription,
         alternates: {
             canonical: MetaData.defaultCanonical,
@@ -27,7 +27,7 @@ export async function generateMetadata(
         },
     };
 }
-export default function DataBuilderPage() {
+export default function ModelAdvanceBuilderPage() {
     return (
         <DataBuilder />
     );
