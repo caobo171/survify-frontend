@@ -176,6 +176,49 @@ export type RawOrder = {
       enabled: number;
     }[];
   }
+
+  smartPLS?: SmartPLSResult,
+
+  basic_analysis?: {
+    cronbach_alphas: {
+      construct_name: string,
+      alpha: number,
+      items: string[]
+    }[],
+    descriptive_statistics: DescriptiveStatistic[],
+
+    correlation_matrix: {
+      [variable: string]: {
+        [variable: string]: number
+      }
+    },
+
+
+    pearson_correlations: PearsonCorrelation[],
+
+    efa_result: {
+      bartlett_p_value: number,
+      bartlett_test_statistic: number,
+
+      kmo_measure: number,
+      total_variance_explained: number,
+
+      factors: {
+        cumulative_variance: number,
+        eigenvalue: number,
+        factor_number: number,
+        loadings: {
+          [variable: string]: number
+        },
+        variance_explained: number
+      }[]
+    }
+
+  },
+
+  linear_regression_analysis?: {
+    regression_result: RegressionResult
+  }
 };
 
 
