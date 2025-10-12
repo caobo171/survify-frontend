@@ -59,7 +59,7 @@ function ForgotPassword() {
   if (success) {
     return (
       <>
-        <Meta title="Survify | Quên mật khẩu" />
+        <Meta title="Survify | Forgot password" />
 
         <div className="w-screen h-screen flex items-start justify-center bg-gray-50">
           <div className="w-full sm:w-[468px] flex flex-col my-4 sm:my-20 mx-4 sm:mx-0 p-10 shadow-sm rounded-lg ring-1 ring-gray-100 bg-white">
@@ -68,17 +68,17 @@ function ForgotPassword() {
             </div>
 
             <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-              Kiểm tra email của bạn
+              Check your email
             </h1>
 
             <p className="text-sm text-center text-gray-500 mb-6">
-              Survify đã gửi email hướng dẫn thay đổi mật khẩu tới&nbsp;
+              Survify has sent an email to change your password to&nbsp;
               <span className="text-primary">{success}</span>
             </p>
 
             <div className="flex flex-col justify-center items-center gap-6">
               <Button onClick={() => router.push('/authentication/login')}>
-                Quay lại đăng nhập
+                Back to login page
               </Button>
             </div>
           </div>
@@ -89,7 +89,7 @@ function ForgotPassword() {
 
   return (
     <>
-      <Meta title="Survify | Quên mật khẩu" />
+      <Meta title="Survify | Forgot password" />
 
       <div className="w-screen h-screen flex items-start justify-center bg-gray-50">
         <div className="w-full sm:w-[468px] flex flex-col my-4 sm:my-20 mx-4 sm:mx-0 p-10 shadow-sm rounded-lg ring-1 ring-gray-100 bg-white">
@@ -98,12 +98,11 @@ function ForgotPassword() {
           </div>
 
           <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-            Quên mật khẩu?
+            Forgot password?
           </h1>
 
           <p className="text-sm text-center text-gray-500 mb-6">
-            Điền email đã đăng kí tài khoản của bạn <br /> để nhận hướng dẫn đổi
-            lại mật khẩu
+            Enter your email address you registered to receive instructions to change your password
           </p>
 
           <form onSubmit={onSubmitHandle}>
@@ -122,14 +121,14 @@ function ForgotPassword() {
                 loading={loading}
                 htmlType="submit"
               >
-                Tiếp tục
+                Continue
               </Button>
 
               <Link
                 href="/authentication/login"
                 className="text-primary text-sm font-medium hover:text-primary-700"
               >
-                Quay lại đăng nhập
+                Back to login page
               </Link>
             </div>
           </form>

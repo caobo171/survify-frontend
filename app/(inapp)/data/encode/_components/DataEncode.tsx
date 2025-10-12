@@ -185,19 +185,19 @@ export default function DataEncode() {
 
                             <div className="p-6">
                                 <div className="space-y-4">
-                                    <p className="font-medium text-gray-900">Để mã hóa dữ liệu từ form có sẵn:</p>
+                                    <p className="font-medium text-gray-900">To encode data from a form:</p>
                                     <ol className="list-decimal pl-5 space-y-2 text-gray-700">
-                                        <li>Nhập đường dẫn edit form của bạn (URL có đuôi /edit)</li>
-                                        <li>Nhập đường dẫn Google Sheet chứa dữ liệu form</li>
-                                        <li>Mở quyền truy cập cho cả form và sheet để hệ thống có thể đọc dữ liệu</li>
-                                        <li>Nhấn "Mã hoá dữ liệu ngay" để tiến hành mã hóa</li>
-                                        <li>File CSV kết quả sẽ được tải về máy của bạn</li>
+                                        <li>Enter the edit form link of your form (URL ends with /edit)</li>
+                                        <li>Enter the Google Sheet link containing form data</li>
+                                        <li>Grant access to both form and sheet so the system can read the data</li>
+                                        <li>Click "Encode data now" to proceed with encoding</li>
+                                        <li>File CSV result will be downloaded to your device</li>
                                     </ol>
 
                                     <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-blue-800 mt-4">
                                         <p>
-                                            <strong className="text-blue-600">Lưu ý: </strong>
-                                            File CSV được tạo ra sẽ chứa dữ liệu đã được mã hóa, giúp bạn điền form nhanh chóng hơn với Survify.
+                                            <strong className="text-blue-600">Note: </strong>
+                                            File CSV created will contain encoded data, helping you fill out the form faster with Survify.
                                         </p>
                                     </div>
                                 </div>

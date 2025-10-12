@@ -38,9 +38,9 @@ const CreditPage: FC<{}> = () => {
                         <div className="p-6">
                             <div className="mb-6">
                                 <p className="text-gray-700 mb-4">
-                                    Bạn vui lòng chuyển khoản <span className="font-bold">chính xác nội dung chuyển tiền</span> bên dưới hệ thống sẽ tự động cộng tiền cho bạn sau 1 - 3 phút sau khi nhận được tiền.<br />
-                                    Sau khi thấy tài khoản chuyển tiền thành công, thử <span className="font-bold">Đăng xuất và Đăng nhập lại</span> để kiểm tra số dư Survify nhé! <br />
-                                    Nếu sau 10 phút từ khi tiền trong tài khoản của bạn bị trừ mà vẫn chưa được cộng tiền vui lòng liên hệ hỗ trợ.
+                                    Please transfer <span className="font-bold">correctly the content of the transfer</span> below the system will automatically add money to you after 1 - 3 minutes after receiving the money.<br />
+                                    After seeing the account transfer money successfully, try <span className="font-bold">Logout and Login again</span> to check the balance of Survify! <br />
+                                    If after 10 minutes from when the money in your account is deducted but still not added money please contact support.
                                 </p>
                             </div>
 

@@ -73,7 +73,7 @@ function ResetPassword() {
   if (success) {
     return (
       <>
-        <Meta title="Survify | Thay đổi mật khẩu" />
+        <Meta title="Survify | Reset password" />
 
         <div className="w-screen h-screen flex items-start justify-center bg-gray-50">
           <div className="w-full sm:w-[468px] flex flex-col my-4 sm:my-20 mx-4 sm:mx-0 p-10 shadow-sm rounded-lg ring-1 ring-gray-100 bg-white">
@@ -82,12 +82,11 @@ function ResetPassword() {
             </div>
 
             <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-              Cập nhật mật khẩu mới thành công
+              Reset password successfully
             </h1>
 
             <p className="text-sm text-center text-gray-500 mb-6">
-              Quay lại trang đăng nhập <br /> để bắt đầu với mật khẩu mới của
-              bạn
+              Back to login page <br /> to start with your new password
             </p>
 
             <div className="flex flex-col justify-center items-center gap-6">
@@ -96,7 +95,7 @@ function ResetPassword() {
                 className="w-full"
                 onClick={() => router.push('/authentication/login')}
               >
-                Quay lại đăng nhập
+                Back to login page
               </Button>
             </div>
           </div>
@@ -107,7 +106,7 @@ function ResetPassword() {
 
   return (
     <>
-      <Meta title="Survify | Thay đổi mật khẩu" />
+      <Meta title="Survify | Reset password" />
 
       <div className="w-screen h-screen flex items-start justify-center bg-gray-50">
         <div className="w-full sm:w-[468px] flex flex-col my-4 sm:my-20 mx-4 sm:mx-0 p-10 shadow-sm rounded-lg ring-1 ring-gray-100 bg-white">
@@ -116,25 +115,25 @@ function ResetPassword() {
           </div>
 
           <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-            Đặt lại mật khẩu
+            Reset password
           </h1>
 
           <p className="text-sm text-center text-gray-500 mb-6">
-            Điền thông tin mật khẩu mới của bạn để đặt lại mật khẩu.
+            Enter your new password to reset your password.
           </p>
 
           <form onSubmit={onSubmitHandle}>
             <Input
               ref={passwordRef}
               className="w-full mb-2"
-              placeholder="Mật khẩu mới"
+              placeholder="New password"
               type="password"
             />
 
             <Input
               ref={confirmPasswordRef}
               className="w-full mb-4"
-              placeholder="Xác nhận mật khẩu mới"
+              placeholder="Confirm new password"
               type="password"
             />
 
@@ -151,14 +150,14 @@ function ResetPassword() {
                 loading={loading}
                 htmlType="submit"
               >
-                Cập nhật mật khẩu
+                Reset password
               </Button>
 
               <Link
                 href="/authentication/login"
                 className="text-primary text-sm font-medium hover:text-primary-700"
               >
-                Quay lại đăng nhập
+                Back to login page
               </Link>
             </div>
           </form>

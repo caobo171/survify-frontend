@@ -110,7 +110,7 @@ export default function Register() {
 
   return (
     <>
-      <Meta title="Survify | Đăng kí tài khoản" />
+      <Meta title="Survify | Register account" />
 
       <div className="w-screen h-screen bg-cover bg-center bg-[url('/static/background_index.jpg')]">
         <div className="relative bg-white flex flex-col h-full justify-center items-center xl:w-1/2 2xl:w-[736px] px-6 sm:px-0">

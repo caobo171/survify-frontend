@@ -16,7 +16,7 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(MetaData.landingPageDomain),
-        title: 'Survify - Nạp tiền vào tài khoản',
+        title: 'Survify - Credit to account',
         description: MetaData.defaultDescription,
         alternates: {
             canonical: MetaData.defaultCanonical,

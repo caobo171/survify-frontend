@@ -4,12 +4,12 @@ class MetaData {
   static appDomain = 'https://app.survify.info';
 
   static defaultKeywords =
-    'Điền đơn tự động, ứng dụng điền đơn tự động, ứng dụng điền đơn, google form';
+    'Fill form automatically, application fill form automatically, application fill form, google form';
 
-  static defaultTitle = 'Survify - Điền đơn tự động';
+  static defaultTitle = 'Survify - Fill form automatically';
 
   static defaultDescription =
-    'Survify là ứng dụng để điền đơn tự động.';
+    'Survify is an application to fill out forms automatically.';
 
   static defaultCanonical = '/';
 

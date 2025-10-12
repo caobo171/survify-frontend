@@ -1,7 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import React from 'react';
 import { MetaData } from '@/core/Metadata';
-import AffiliateComponent from './_components/Affiliate';
 import AffiliateClientWrapper from './_components/AffiliateClientWrapper';
 
 type Props = {
@@ -18,8 +17,8 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(MetaData.landingPageDomain),
-        title: 'Chương trình Affiliate | Survify',
-        description: 'Tham gia chương trình affiliate của Survify để nhận hoa hồng từ việc giới thiệu người dùng mới.',
+        title: 'Affiliate Program | Survify',
+        description: 'Join the affiliate program of Survify to earn commission from introducing new users.',
         alternates: {
             canonical: MetaData.defaultCanonical,
             languages: MetaData.defaultLanguages,

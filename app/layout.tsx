@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactElement }) {
     <html lang="en">
       <Meta
         title="Survify"
-        description="Survify - Tạo form điền thông tin, điền rải, điền động, điền tự động"
+        description="Survify - Fill form automatically"
       />
       <Script>
         {
