@@ -18,32 +18,32 @@ import { AnyObject } from '@/store/interface';
 const registerSchema = z
   .object({
     email: z
-      .string({ required_error: 'Email không được bỏ trống' })
-      .min(1, { message: 'Email không được bỏ trống' })
-      .email({ message: 'Định dạng Email không đúng' }),
+      .string({ required_error: 'Email is required' })
+      .min(1, { message: 'Email is required' })
+      .email({ message: 'Invalid email format' }),
 
     username: z
-      .string({ required_error: 'Tên đăng nhập không được bỏ trống' })
-      .min(1, { message: 'Tên đăng nhập không được bỏ trống' })
+      .string({ required_error: 'Username is required' })
+      .min(1, { message: 'Username is required' })
       // regex only allow lowercase, uppercase characters and numbers
       .refine((val: string) => /^[a-zA-Z0-9]+$/.test(val), {
         message:
-          'Tên đăng nhập chỉ được sử dụng số, chữ hoa và chữ thường (không dấu viết liền nhau)',
+          'Username can only use numbers, uppercase and lowercase letters (no diacritical marks)',
       }),
 
     password: z
-      .string({ required_error: 'Mật khẩu không được bỏ trống' })
-      .min(1, { message: 'Mật khẩu không được bỏ trống' }),
+      .string({ required_error: 'Password is required' })
+      .min(1, { message: 'Password is required' }),
 
     confirmPassword: z
-      .string({ required_error: 'Xác nhận mật khẩu của bạn' })
-      .min(1, { message: 'Xác nhận mật khẩu của bạn' }),
+      .string({ required_error: 'Confirm Password is required' })
+      .min(1, { message: 'Confirm Password is required' }),
 
     referCode: z.string().optional(),
   })
   // check confirm password
   .refine((values) => values.password === values.confirmPassword, {
-    message: 'Mật khẩu và Xác nhận mật khẩu phải trùng nhau',
+    message: 'Password and Confirm Password must match',
     path: ['confirmPassword'],
   });
 
@@ -124,10 +124,10 @@ export default function Register() {
             </Link>
 
             <h1 className="text-2xl leading-8 font-medium text-gray-900 mb-2">
-              Đăng kí tài khoản
+              Register Account
             </h1>
 
-            <p className="mb-10 text-gray-500">Chào mừng bạn đến với Survify</p>
+            <p className="mb-10 text-gray-500">Welcome to Survify</p>
 
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -141,7 +141,7 @@ export default function Register() {
                 />
               </FormItem>
 
-              <FormItem label="Tên đăng nhập" className="mb-6">
+              <FormItem label="Username" className="mb-6">
                 <Controller
                   render={({ field }) => (
                     <Input
@@ -158,7 +158,7 @@ export default function Register() {
 
               <div className="flex justify-between">
 
-                <FormItem label="Mật khẩu" className="mb-6">
+                <FormItem label="Password" className="mb-6">
                   <Controller
                     render={({ field }) => (
                       <Input
@@ -173,7 +173,7 @@ export default function Register() {
                   />
                 </FormItem>
 
-                <FormItem label="Xác nhận mật khẩu" className="mb-6">
+                <FormItem label="Confirm Password" className="mb-6">
                   <Controller
                     render={({ field }) => (
                       <Input size="large" type="password" {...field} />
@@ -187,7 +187,7 @@ export default function Register() {
 
 
 
-              <FormItem label="Mã giới thiệu (nếu có)" className="mb-8">
+              <FormItem label="Referral Code (optional)" className="mb-8">
                 <Controller
                   
                   render={({ field }) => <Input size="large" {...field} />}
@@ -197,7 +197,7 @@ export default function Register() {
               </FormItem>
 
               <Button className="w-full" size="large" loading={isSubmitting}>
-                Đăng kí
+                Register
               </Button>
             </form>
 
@@ -211,12 +211,12 @@ export default function Register() {
             )}
 
             <p className="mb-20">
-              Bạn đã có tài khoản? &nbsp;
+              Already have an account? &nbsp;
               <Link
                 href="/authentication/login"
                 className="text-primary hover:text-primary-700"
               >
-                Đăng nhập ngay
+                Login
               </Link>
             </p>
           </div>

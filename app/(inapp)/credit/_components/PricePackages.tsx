@@ -48,13 +48,39 @@ const CreditPage: FC<{}> = () => {
             return;
         }
 
+        if (!me?.data?.id) {
+            console.error('User data not available');
+            return;
+        }
+
         window.Paddle.Checkout.open({
             items: [
                 {
                     priceId: pkg.paddle_price_id,
                     quantity: 1
                 }
-            ]
+            ],
+            customData: {
+                user_id: me.data.id,
+                credit_id: me.data.idcredit,
+                packageId: pkg.id,
+                credits: pkg.credit
+            },
+            settings: {
+                successUrl: window.location.href,
+            },
+            eventCallback: (event: any) => {
+                if (event.name === 'checkout.completed') {
+                    // Payment completed successfully
+                    console.log('Payment completed:', event.data);
+                    // Close the checkout
+                    window.Paddle.Checkout.close();
+                    // Optionally refresh user data or show success message
+                    window.location.reload();
+                } else if (event.name === 'checkout.closed') {
+                    console.log('Checkout closed');
+                }
+            }
         });
     };
 

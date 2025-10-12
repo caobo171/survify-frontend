@@ -40,18 +40,18 @@ function ConfirmRegister() {
           </div>
 
           <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-            Xác thực thất bại
+            Verify failed
           </h1>
 
           <p className="text-sm text-center text-gray-500 mb-6">
-            Đã có lỗi xảy ra trong quá trình xác thực tài khoản.
+            An error occurred during the verification process.
             <br />
-            Kiểm tra email của bạn và thử lại nhé.
+            Please check your email and try again.
           </p>
 
           <div className="text-center">
             <Button onClick={() => router.push('/authentication/login')}>
-              Quay lại đăng nhập
+              Back to login
             </Button>
           </div>
         </>
@@ -65,13 +65,13 @@ function ConfirmRegister() {
         </div>
 
         <h1 className="text-center text-lg font-medium text-gray-900 mb-2">
-          Chào mừng&nbsp;
+          Welcome&nbsp;
           <span className="text-primary">{activated?.fullName}</span>
         </h1>
 
         <p className="text-sm text-center text-gray-500 mb-6">
-          Chúc mừng! Tài khoản của bạn đã được <br />
-          xác thực thành công.&nbsp;
+          Welcome! Your account has been verified. <br />
+          You can now start using Survify.
         </p>
 
         <Button
@@ -79,7 +79,7 @@ function ConfirmRegister() {
             router.push('/authentication/login')
           }
         >
-          Bắt đầu sử dụng Survify
+          Start using Survify
         </Button>
       </>
     );
@@ -87,7 +87,7 @@ function ConfirmRegister() {
 
   return (
     <>
-      <Meta title="Survify | Xác thực tài khoản" />
+      <Meta title="Survify | Verify account" />
       <div className="w-screen h-screen flex items-start justify-center bg-gray-50">
         <div className="w-full sm:w-[468px] flex flex-col my-4 sm:my-20 mx-4 sm:mx-0 p-10 shadow-sm rounded-lg ring-1 ring-gray-100 bg-white">
           {isLoading ? (

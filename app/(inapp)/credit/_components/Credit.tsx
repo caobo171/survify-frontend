@@ -73,7 +73,7 @@ const CreditPage: FC<{}> = () => {
 
                         <div className="p-6">
                             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                                <li>FILLFORM sẽ hoàn tiền 100% nếu Tool lỗi / sử dụng dịch vụ không thành công.</li>
+                                <li>Survify sẽ hoàn tiền 100% nếu Tool lỗi / sử dụng dịch vụ không thành công.</li>
                                 <li>Nạp tối thiểu: 10,000 đ. Cố tình nạp dưới mức tối thiểu sai cú pháp không hỗ trợ dưới mọi hình thức.</li>
                                 <li>Nạp tiền sai cú pháp vui lòng liên hệ hỗ trợ đính kèm hóa đơn chuyển tiền và tên đăng nhập để được hỗ trợ.</li>
                                 <li>Chỉ hỗ trợ các giao dịch nạp tiền sai cú pháp trong vòng 30 ngày kể từ ngày chuyển tiền, quá 30 ngày KHÔNG xử lý dưới mọi hình thức!</li>

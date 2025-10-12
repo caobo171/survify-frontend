@@ -95,7 +95,7 @@ export default function Login() {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full sm:w-[436px] mb-6"
             >
-              <FormItem label="Email / Tên đăng nhập" className="mb-6">
+              <FormItem label="Email / Username" className="mb-6">
                 <Controller
                   render={({ field }) => (
                     <Input {...field} className="w-full" size="large" />

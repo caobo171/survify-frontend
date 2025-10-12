@@ -51,7 +51,7 @@ export default function HomePage() {
                     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-6">
                         <div>
                             <p className="text-sm text-gray-500 mb-1">Credit Balance</p>
-                            <p className="text-2xl font-bold text-gray-900">${(me?.data?.credit || 0).toLocaleString()}</p>
+                            <p className="text-2xl font-bold text-gray-900">{(me?.data?.credit || 0).toLocaleString()}</p>
                         </div>
                         
                         <div className="grid grid-cols-2 gap-4">

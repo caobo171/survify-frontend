@@ -632,33 +632,40 @@ export default function BuildDataForm() {
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p>Bạn hãy <b>thêm biến/nhân tố điều tiết và tác động</b> giữa các biến để tạo mô hình hoàn chỉnh</p>
+                                    <p>If you don't know how to fill, try
+                                        <button onClick={autoFillHandle} className="mx-1 px-3 py-0.5 bg-primary-100 text-primary-700 rounded-full font-medium hover:bg-primary-200 transition inline-flex items-center">
+                                            <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                            </svg>
+                                            auto suggest ratio
+                                        </button>
+                                        to get suggestions, only for reference.</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p>Chú ý chỉnh sửa <b>Tên, Thang đo, Số biến quan sát Chiều tác động</b> sao cho đúng với mô hình của bạn</p>
+                                    <p>Make sure to edit <b>Variable name, Scale, Number of variables, Direction of effect</b> to match your model</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p>Hãy <b>loại bỏ điều hướng</b> session hoặc điền tỉ lệ để <b>đạt hết gạn lọc</b> nhé.</p>
+                                    <p>Remove <b>session</b> or fill ratio to <b>meet all filters</b>.</p>
                                 </div>
                                 <div className="flex items-start gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                     <p>
-                                        Nếu bạn chưa biết điền, hãy thử
+                                        If you don't know how to fill, try
                                         <button onClick={autoFillHandle} className="mx-1 px-3 py-0.5 bg-primary-100 text-primary-700 rounded-full font-medium hover:bg-primary-200 transition inline-flex items-center">
                                             <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                             </svg>
-                                            tự động đề xuất tỉ lệ
+                                            auto suggest ratio
                                         </button>
-                                        để tham khảo, chỉ mang tính chất tham khảo.
+                                        to get suggestions, only for reference.
                                     </p>
                                 </div>
                                 <div className="flex items-start gap-2">
@@ -666,27 +673,27 @@ export default function BuildDataForm() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                     <p>
-                                        Nếu bạn có thay đổi ở Google Form, hãy
+                                        If you have changed at Google Form, please
                                         <button onClick={syncFormHandle} className="mx-1 px-3 py-0.5 bg-primary-100 text-primary-700 rounded-full font-medium hover:bg-primary-200 transition inline-flex items-center">
                                             <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                             </svg>
-                                            đồng bộ lại cấu hình
+                                            sync configuration
                                         </button>
-                                        để cập nhật lại nhé
+                                        to update again
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                     </svg>
-                                    <p>Survify sẽ cam kết điền form đúng theo tỉ lệ và tất cả giả thuyết trong mô hình</p>
+                                    <p>Survify will commit to filling the form according to the ratio and all hypotheses in the model</p>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                     </svg>
-                                    <p>Video hướng dẫn chi tiết: <a target="_blank" href="https://www.youtube.com/watch?v=SpqLCXKGFGU" className="text-primary-600 font-medium hover:underline">Xem tại đây</a></p>
+                                    <p>Video guide: <a target="_blank" href="https://www.youtube.com/watch?v=SpqLCXKGFGU" className="text-primary-600 font-medium hover:underline">Watch here</a></p>
                                 </div>
                             </div>
                         </div>
@@ -772,10 +779,10 @@ export default function BuildDataForm() {
                                                             htmlFor={`select-${answer.id}`}
                                                             className="absolute -top-2 left-2 inline-block rounded-lg bg-white px-1 text-xs font-medium text-gray-900 max-w-full truncate"
                                                         >
-                                                            Chọn loại câu hỏi tự luận
+                                                            Choose type of question
 
                                                             <span className="text-xs text-gray-500">
-                                                                &nbsp; (Nếu chọn "other-Bỏ qua không điền" thì bạn phải "tắt bắt buộc điền trên Google Form")
+                                                                &nbsp; (If you choose "other-Skip" then you must "turn off required on Google Form")
                                                             </span>
                                                         </label>
 
@@ -812,7 +819,7 @@ export default function BuildDataForm() {
                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                 </svg>
-                                Lưu lại mô hình và tiếp tục chọn số lượng mẫu
+                                Save model and continue to select sample size
                             </button>
 
 
@@ -823,7 +830,7 @@ export default function BuildDataForm() {
                                         <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                         </svg>
-                                        <span className="text-green-800 font-semibold text-lg">Đã lưu dữ liệu thành công</span>
+                                        <span className="text-green-800 font-semibold text-lg">Saved data successfully</span>
                                     </div>
 
 
@@ -831,7 +838,7 @@ export default function BuildDataForm() {
                                         <div className="bg-white p-10 rounded-lg shadow-sm border border-gray-100 max-w-2xl">
                                             <div className="mb-4">
                                                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                    Số lượng mẫu cần tạo
+                                                    Number of samples to create
                                                 </label>
                                                 <input
                                                     type="number"
@@ -854,7 +861,7 @@ export default function BuildDataForm() {
                                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V9a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                                 </svg>
-                                                Kiểm tra kết quả dữ liệu
+                                                Check result data
                                             </button>
                                         </div>
                                     ) : (
@@ -918,7 +925,7 @@ export default function BuildDataForm() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                {isShowErrorMessage ? 'Vẫn tiếp tục điền form' : 'Bắt đầu điền form'}
+                                                {isShowErrorMessage ? 'Continue to fill form' : 'Start to fill form'}
                                             </button>
 
 
@@ -929,7 +936,7 @@ export default function BuildDataForm() {
                                                             <svg className="h-5 w-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                                             </svg>
-                                                            <span className="text-base font-medium">Vui lòng kiểm tra và sửa các lỗi sau:</span>
+                                                            <span className="text-base font-medium">Please check and fix the following errors:</span>
                                                         </div>
                                                         <ul className="list-disc list-inside text-sm text-left pl-5 mb-3">
                                                             {chatErrors.filter(error => error.type === 'error').map((error, index) => (
@@ -947,7 +954,7 @@ export default function BuildDataForm() {
                                                             <svg className="h-5 w-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                                             </svg>
-                                                            <span className="text-base font-medium">Vui lòng kiểm tra và sửa các lỗi sau:</span>
+                                                            <span className="text-base font-medium">Please check and fix the following errors:</span>
                                                         </div>
                                                         <ul className="list-disc list-inside text-sm text-left pl-5 mb-3">
                                                             {chatErrors.filter(error => error.type === 'error').map((error, index) => (
@@ -958,7 +965,7 @@ export default function BuildDataForm() {
                                                             onClick={() => onSubmitOrder()}
                                                             className="inline-flex items-center px-4 py-2 text-sm bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
                                                         >
-                                                            Vẫn chạy điền form
+                                                            Continue to fill form
                                                             <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                                             </svg>

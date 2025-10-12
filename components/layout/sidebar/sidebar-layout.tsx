@@ -1,6 +1,7 @@
 'use client';
 
 import { useMe } from '@/hooks/user';
+import { MeFunctions } from '@/store/me/functions';
 import { Dialog, Menu, MenuButton, MenuItem, MenuItems, Transition, TransitionChild } from '@headlessui/react';
 import { Bars3Icon, BellIcon, ChevronDownIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
@@ -82,7 +83,7 @@ export function SidebarLayout(
 
   const userNavigation = [
     { name: 'Your profile', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Sign out', href: '#', onClick: () => MeFunctions.logout() },
   ]
 
   return (
@@ -233,6 +234,7 @@ export function SidebarLayout(
                         <MenuItem key={item.name}>
                           <a
                             href={item.href}
+                            onClick={item.onClick}
                             className="block px-3 py-1 text-sm/6 text-gray-900 data-[focus]:bg-gray-50 data-[focus]:outline-none dark:text-white dark:data-[focus]:bg-gray-700"
                           >
                             {item.name}

@@ -190,14 +190,14 @@ export default function AffiliateDashboard() {
           <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
             <h3 className="text-lg font-medium text-blue-800 mb-2">Quyền lợi của bạn:</h3>
             <ul className="space-y-2 text-sm text-blue-700">
-              <li>- Chỉ được tính affiliate với tài khoản giới thiệu đăng kí mới.</li>
-              <li>- Survify sẽ tặng bạn {REFER_PERCENT}% trên mỗi giao dịch nạp tiền thành công của người được giới thiệu.</li>
-              <li>- Hoa hồng phải đạt 100.000 VND mới được yêu cầu rút tiền.</li>
-              <li>- Tài khoản đang bị lỗi hoặc lạm dụng, spam sẽ bị từ chối tính affiliate.</li>
+              <li>- Only accounts that register new accounts can be calculated as affiliate.</li>
+              <li>- Survify will give you {REFER_PERCENT}% on every successful transaction of the person you introduced.</li>
+              <li>- The commission must reach 100,000 VND before requesting a withdrawal.</li>
+              <li>- Accounts that are reported as invalid or spam will be rejected from affiliate calculations.</li>
             </ul>
             
             <h3 className="text-lg font-medium text-blue-800 mt-4 mb-2">Quyền lợi của bạn bè được giới thiệu:</h3>
-            <p className="text-sm text-blue-700">- Được tặng ngay 5000 credit vào tài khoản đăng kí mới.</p>
+            <p className="text-sm text-blue-700">- You will receive 5,000 credits immediately into your account when registering a new account.</p>
           </div>
         </div>
 
@@ -205,9 +205,9 @@ export default function AffiliateDashboard() {
         <div className="space-y-6">
           {/* Program Info */}
           <div className="bg-white rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-bold mb-4">Chương trình affiliate</h2>
-            <p className="mb-3">Giới thiệu ngay để nhận {REFER_PERCENT}% mỗi giao dịch tự động</p>
-            <p className="mb-4">Copy link dưới đây và chia sẻ với bạn bè để đăng ký dùng Survify nhé!</p>
+            <h2 className="text-xl font-bold mb-4">Affiliate Program</h2>
+            <p className="mb-3">Introduce now to receive {REFER_PERCENT}% on every successful transaction of the person you introduced.</p>
+            <p className="mb-4">Copy link below and share with your friends to register and use Survify!</p>
             
             {/* Referral Link */}
             <div className="mb-4">
@@ -232,7 +232,7 @@ export default function AffiliateDashboard() {
 
           {/* Referral List */}
           <div className="bg-white rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-bold mb-4">Danh sách giới thiệu</h2>
+            <h2 className="text-xl font-bold mb-4">Referral List</h2>
             {referrals.loading ? (
               <div className="flex justify-center items-center h-32">
                 <Loader2 className="w-6 h-6 animate-spin text-blue-500" />

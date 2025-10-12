@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
 function Meta({
-  title = 'Survify - Điền đơn tự động',
-  keywords = 'Điền đơn tự động, tự học tiếng anh, học tiếng anh miễn phí',
+  title = 'Survify - Fill form automatically',
+  keywords = 'Fill form automatically',
   url = '',
   image = '',
-  description = 'Survify là chương trình luyện nghe Tiếng Anh miễn phí và sử dụng phương pháp nghe chép chính tả.',
+  description = 'Survify is a program to fill form automatically.',
 }: {
   title: string;
   keywords?: string;
@@ -47,7 +47,7 @@ function Meta({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:image" content={image || 'https://app.survify.info/static/img/background.jpg'} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="keywords" content={keywords || 'e-learning, english, free'} />
+      <meta name="keywords" content={keywords || 'fill form automatically'} />
       <meta name="description" content={description} />
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
