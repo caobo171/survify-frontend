@@ -202,6 +202,39 @@ export const READ_RESULT_PRICE = 50000;
 export const PULSES_TOKEN = 'My5wdWxzZXN1cnZleXM';
 
 
+export const PRICING_PACKAGES = [
+  {
+    id: 'starter_package', 
+    name: 'Starter package',
+    price: 9,
+    old_price: 15,
+    credit: 300,
+    paddle_product_id: 'pro_01k7bxw7kdjbv6tpx4n4kn0as0',
+    paddle_price_id: 'pri_01k7by8zxbe9exh7zdssjxtpdf'
+  },
+  {
+    id: 'standard_package', 
+    name: 'Standard package',
+    price: 19,
+    old_price: 35,
+    credit: 700,
+    paddle_product_id: 'pro_01k7bqq13zhsrwxv5hdyxm3ndc',
+    paddle_price_id: 'pri_01k7bqr7pacsjwqt70y0cvy9tr'
+  },
+  {
+    id: 'expert_package', 
+    name: 'Expert package',
+    price: 49,
+    old_price: 100,
+    credit: 2000,
+    paddle_product_id: 'pro_01k7bqq13zhsrwxv5hdyxm3ndc',
+    paddle_price_id: 'pri_01k7bqr7pacsjwqt70y0cvy9tr'
+  }
+]
+
+export const PADDLE_CLIENT_TOKEN = 'test_e38a19aec12f9a5b712c65b3901';
+
+
 export const AI_CASES = [
   {
     id: 'phan_tich_quyet_dinh_nhan_viec',

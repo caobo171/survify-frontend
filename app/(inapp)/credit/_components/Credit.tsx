@@ -1,14 +1,13 @@
 'use client'
 import { FC, useState } from 'react'
-import { useMe, useMyBankInfo } from '@/hooks/user';
-import { PaymentInformation } from '@/components/common'
+import { useMe } from '@/hooks/user';
 import { CreateOrderForm } from '@/components/form'
 import { OPTIONS_DELAY_ENUM } from '@/core/Constants'
+import PricePackages from './PricePackages';
 
 const CreditPage: FC<{}> = () => {
 
     const me = useMe();
-    const bankInfo = useMyBankInfo();
     const [numRequest, setNumRequest] = useState<number>(0);
     const [delayType, setDelayType] = useState<number>(OPTIONS_DELAY_ENUM.NO_DELAY);
     const [disabledDays, setDisabledDays] = useState<number[]>([]);
@@ -21,15 +20,18 @@ const CreditPage: FC<{}> = () => {
             <div className=" relative isolate overflow-hidden">
                 <div className="container mx-auto" data-aos="fade-up">
                     {/* Header */}
-                    <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold mb-3">Nạp tiền vào tài khoản</h2>
-                        <div className="text-2xl items-center gap-2 mb-2">
-                            Số dư hiện tại: <span className="font-bold">{me?.data?.credit.toLocaleString()} VND</span>
-                        </div>
+
+                    <div className="mb-8 text-left">
+                        <h2 className="text-3xl font-bold mb-3">
+                            Buy <span className="text-blue-600">The Credit</span>
+                        </h2>
                         <p className="text-gray-600">
-                            Username: <span className="font-bold">{me?.data?.username}</span>
+                            Choose the package you want to buy, your current credit is {me?.data?.credit.toLocaleString()}
                         </p>
                     </div>
+
+
+                    <PricePackages />
 
                     {/* Payment Information */}
                     <div className="bg-white shadow-sm rounded-lg border border-gray-100 mb-6">
@@ -43,13 +45,6 @@ const CreditPage: FC<{}> = () => {
                             </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <div className="bg-gray-50 p-4 rounded-lg">
-                                    <PaymentInformation
-                                        bankInfo={bankInfo}
-                                        className="space-y-3"
-                                    />
-                                </div>
-
                                 <CreateOrderForm
                                     userCredit={me?.data?.credit || 0}
                                     numRequest={numRequest}
