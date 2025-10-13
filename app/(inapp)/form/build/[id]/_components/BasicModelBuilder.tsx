@@ -166,12 +166,12 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
                         {/* Biến phụ thuộc*/}
                         <div className="bg-green-50 p-2 border-2 border-green-200 rounded-lg">
                             <div className="flex items-center justify-between mb-2">
-                                <h5 className="font-medium text-green-700 text-xs">Biến phụ thuộc(Target)</h5>
+                                <h5 className="font-medium text-green-700 text-xs">Independent Variable(Target)</h5>
                             </div>
                             {dependentVariable && (
                                 <div className="space-y-3">
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Tên biến</label>
+                                        <label className="block text-xs font-medium text-gray-600 mb-1">Variable name</label>
                                         <input
                                             type="text"
                                             value={dependentVariable.name}
@@ -180,7 +180,7 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Câu hỏi ({(dependentVariable.questions || []).length})</label>
+                                        <label className="block text-xs font-medium text-gray-600 mb-1">Questions ({(dependentVariable.questions || []).length})</label>
                                         <Select
                                             className='text-xs'
                                             isMulti
@@ -224,12 +224,12 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
                         {variables.map((variable, index) => (
                             <div key={index} className="bg-blue-50 p-2 border-2 border-blue-200 rounded-lg">
                                 <div className="flex items-center justify-between mb-2">
-                                    <h5 className="font-medium text-blue-700 text-xs">Biến độc lập {index + 1}</h5>
+                                    <h5 className="font-medium text-blue-700 text-xs">Independent variable {index + 1}</h5>
                                     <button
                                         onClick={() => handleRemoveVariable(index)}
                                         className="text-red-500 hover:text-red-700 text-xs px-2 py-1 rounded"
                                     >
-                                        Xoá biến
+                                        Remove variable
                                     </button>
                                 </div>
                                 <div className="space-y-3">
@@ -237,7 +237,7 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
 
                                     <div className='flex flex-row space-x-2'>
                                         <div className='flex-1'>
-                                            <label className="block text-xs font-medium text-gray-600 mb-1">Tên biến</label>
+                                            <label className="block text-xs font-medium text-gray-600 mb-1">Variable name</label>
                                             <input
                                                 type="text"
                                                 value={variable.name}
@@ -246,30 +246,30 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
                                             />
                                         </div>
                                         <div className='flex-1'>
-                                            <label className="block text-xs font-medium text-gray-600 mb-1">Hướng tác động</label>
+                                            <label className="block text-xs font-medium text-gray-600 mb-1">Direction of effect</label>
                                             <select
                                                 value={variable.effect_direction}
                                                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleUpdateVariable('independent', index, 'effect_direction', e.target.value)}
                                                 className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-transparent"
                                             >
-                                                <option value="positive">Tích cực (+)</option>
-                                                <option value="negative">Tiêu cực (-)</option>
+                                                <option value="positive">Positive (+)</option>
+                                                <option value="negative">Negative (-)</option>
                                             </select>
                                         </div>
                                         <div className='flex-1'>
-                                            <label className="block text-xs font-medium text-gray-600 mb-1">Có tác động</label>
+                                            <label className="block text-xs font-medium text-gray-600 mb-1">Has effect</label>
                                             <select
                                                 value={variable.non_effect ? '1' : '0'}
                                                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleUpdateVariable('independent', index, 'non_effect', e.target.value === '1' ? 1 : 0)}
                                                 className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-transparent"
                                             >
-                                                <option value='1'>Không</option>
-                                                <option value='0'>Có</option>
+                                                <option value='1'>No</option>
+                                                <option value='0'>Yes</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-medium text-gray-600 mb-1">Câu hỏi ({(variable.questions || []).length})</label>
+                                        <label className="block text-xs font-medium text-gray-600 mb-1">Questions ({(variable.questions || []).length})</label>
                                         <Select
                                             isMulti
                                             className='text-xs'
@@ -315,7 +315,7 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
                                 onClick={handleAddVariable}
                                 className="w-full flex items-center justify-center px-3 py-2 text-xs font-medium text-primary border-2 border-dashed border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
                             >
-                                + Thêm biến độc lập
+                                + Add independent variable
                             </button>
                         </div>
                     </div>
@@ -323,7 +323,7 @@ export const BasicModelBuilder = ({ dataForm, model, setModel }: ModelBuilderPro
 
                 {/* Right Column: Model Visualization */}
                 <div className="lg:col-span-3 bg-gray-50 p-6 rounded-lg border border-gray-200">
-                    <h4 className="font-medium mb-4">Hiển thị mô hình</h4>
+                    <h4 className="font-medium mb-4">Display model</h4>
                     {dependentVariable && variables.length > 0 ? (
                         <div className="flex items-center justify-center h-full min-h-[500px] relative">
                             {/* Independent Variables (Left side) */}

@@ -133,7 +133,7 @@ export default function FormRate() {
                 const errorId = `error-${input.id}`;
 
                 if (value < 0 || value > 100) {
-                    addChatError(chatErrors, `Giá trị không hợp lệ (${value}). Hãy điền tỉ lệ (%) là số tự nhiên từ 0-100`, errorId, "error");
+                    addChatError(chatErrors, `Invalid value (${value}). Please enter a natural number from 0-100`, errorId, "error");
                 }
             }
         });
@@ -154,7 +154,7 @@ export default function FormRate() {
                     });
 
                     if (sum < 120) {
-                        addChatError(chatErrors, `Câu chọn nhiều đáp án. Cần điền tỉ lệ (%) là số tự nhiên từ 0-100. Và tổng tỉ lệ nên lớn hơn 120, để trộn tốt nhất (hiện tại: ${sum})`, `multi-error-${questionId}`, "error");
+                        addChatError(chatErrors, `Multi-choice question. Please enter a natural number from 0-100. And the total percentage should be greater than 120, to mix well (currently: ${sum})`, `multi-error-${questionId}`, "error");
                     }
                 }
             }
@@ -168,7 +168,7 @@ export default function FormRate() {
 
                 let question = dataForm?.latest_form_questions?.find(q => q.id == questionId);
                 if (select.value.toLowerCase().includes("other")) {
-                    addChatError(chatErrors, `Bạn chọn "other - bỏ qua không điền". Hãy kiểm tra lại đã tắt bắt buộc điền câu hỏi <b>${question?.question} - ${question?.description || ''}</b> trên Google Form chưa?`, `select-error-${select.id}`, question?.required ? "error" : "warning");
+                    addChatError(chatErrors, `You selected "other - skip". Please check again if you have disabled the required option for the question <b>${question?.question} - ${question?.description || ''}</b> on Google Form?`, `select-error-${select.id}`, question?.required ? "error" : "warning");
                 }
             }
         });
@@ -177,12 +177,12 @@ export default function FormRate() {
     const validateConfig = (chatErrors: ChatError[]): void => {
 
         if (!dataForm?.latest_form_questions) {
-            return addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ bật quyền chia sẻ nhé cho bất kì ai có link nhé`, `00000`, "error");
+            return addChatError(chatErrors, `System cannot check config currently, please remember to enable sharing permissions for anyone with the link`, `00000`, "error");
         }
 
         const latest_form_questions = dataForm?.latest_form_questions || [];
         if (latest_form_questions.length !== dataForm?.form.loaddata?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu form hiện tại và dữ liệu form mới nhất. Hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current form data and the latest form data. Please check the latest form data again!`, `00000`, "error");
         }
 
         let min_length = Math.min(latest_form_questions.length, dataForm?.form.loaddata?.length || 0);
@@ -193,12 +193,12 @@ export default function FormRate() {
 
             if (question?.type != latest_question?.type) {
                 console.log(question, latest_question);
-                addChatError(chatErrors, `Có sự khác nhau giữa câu hỏi ${question.question} - ${question.description || ''} với config mới nhất, hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current question ${question.question} - ${question.description || ''} and the latest config, please check the latest form data again!`, `00000`, "error");
                 continue;
             }
 
             if (question.type == QUESTION_TYPE.FILE) {
-                addChatError(chatErrors, `Chưa hỗ trợ câu hỏi loại file ${question.question} - ${question.description || ''}`, `00000`, "error");
+                addChatError(chatErrors, `Unsupported question type: file ${question.question} - ${question.description || ''}`, `00000`, "error");
                 continue;
             }
 
@@ -207,7 +207,7 @@ export default function FormRate() {
                 let answers = question.answer || [];
 
                 if (latest_answers.length !== answers.length) {
-                    addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                    addChatError(chatErrors, `There is a difference between the current answer configuration in the question ${question.question} - ${question.description || ''} and the latest config of Google Form, please sync again`, `00000`, "error");
                     continue;
                 }
 
@@ -216,12 +216,12 @@ export default function FormRate() {
                     const answer = answers[j];
 
                     if (latest_answer.data != answer.data) {
-                        addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer configuration in the question ${question.question} - ${question.description || ''} and the latest config of Google Form, please sync again`, `00000`, "error");
                         break;
                     }
 
                     if (latest_answer.go_to_section != answer.go_to_section) {
-                        addChatError(chatErrors, `Có sự khác nhau về hướng đi theo câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer configuration in the question ${question.question} - ${question.description || ''} and the latest config of Google Form, please sync again`, `00000`, "error");
                         break;
                     }
                 }
@@ -230,7 +230,7 @@ export default function FormRate() {
 
         const latest_form_sections = dataForm?.latest_form_sections || [];
         if (latest_form_sections.length !== dataForm?.form.sections?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu section hiện tại và dữ liệu section mới nhất. Hãy kiểm tra lại dữ liệu section mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current section data and the latest section data. Please check the latest section data again!`, `00000`, "error");
         }
 
         const min_sections_length = Math.min(latest_form_sections.length, dataForm?.form.sections?.length || 0);
@@ -239,7 +239,7 @@ export default function FormRate() {
             const latest_section = latest_form_sections[i];
             const section = dataForm?.form.sections[i];
             if (latest_section.next_section != section.next_section) {
-                addChatError(chatErrors, `Có sự khác nhau về điều hướng section với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current section configuration and the latest config of Google Form, please sync again`, `00000`, "error");
                 break;
             }
         }
@@ -247,37 +247,37 @@ export default function FormRate() {
 
         // Config validation logic
         if (dataForm?.config?.lang === null) {
-            addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email và tắt giới hạn trả lời nhé`, `00000`, "warning");
+            addChatError(chatErrors, `System cannot check config currently, please remember to disable email collection and disable response limit`, `00000`, "warning");
         } else {
             if (dataForm?.config?.isValidPublished === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Form chưa Xuất bản/Publish. Nếu là Form cũ (trước 2025) có thể bỏ qua lỗi này.`, `00004`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Form has not been published. If it is an old form (before 2025), you can ignore this error.`, `00004`, "error");
             } else if (dataForm?.config?.isValidPublished === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ Xuất bản/Publish Form nhé!`, `00004`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to publish Form!`, `00004`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải chọn "Không thu thập email/ Do not Collect" trong setting.`, `00001`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must select "Do not collect email" in setting.`, `00001`, "error");
             } else if (dataForm?.config?.isValidCollectEmail === "null") {
-                addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email. Phải chọn "Không thu thập email/ Do not Collect" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `System cannot check config, please remember to disable email collection`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidEditAnswer === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt cho phép chỉnh sửa câu trả lời trong setting.`, `00002`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must disable "Allow editing responses" in setting.`, `00002`, "error");
             } else if (dataForm?.config?.isValidEditAnswer === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt "cho phép chỉnh sửa câu trả lời" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to disable "Allow editing responses" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidLimitRes === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt mọi giới hạn trả lời trong setting.`, `00003`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must disable "Limit responses to 1 per person" in setting.`, `00003`, "error");
             } else if (dataForm?.config?.isValidLimitRes === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt mọi giới hạn trả lời trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to disable "Limit responses to 1 per person" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "true" &&
                 dataForm?.config?.isValidEditAnswer === "true" &&
                 dataForm?.config?.isValidLimitRes === "true" &&
                 dataForm?.config?.isValidPublished === "true") {
-                addChatError(chatErrors, `Tuyệt! Google form này setting OK. Hãy config tỉ lệ nhé.`, `00005`, "note");
+                addChatError(chatErrors, `Perfect! Google form setting OK. Please config ratio now.`, `00005`, "note");
             }
         }
     };
@@ -368,17 +368,17 @@ export default function FormRate() {
     return (
         <>
             <section className=" ">
-                <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
+                <div className=" " data-aos="fade-up">
 
                     {(isLoading) && <LoadingAbsolute />}
                     <div className="container mx-auto mb-8">
-                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Điền theo tỉ lệ mong muốn</h1>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-left text-gray-900">Fill in the form with ratio</h1>
 
                         <FormTypeNavigation formId={dataForm?.form?.id} type={'rate'} />
 
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                             <div className="space-y-4 text-xs text-gray-700">
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-start gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -530,7 +530,7 @@ export default function FormRate() {
                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                 </svg>
-                                Lưu mô hình và tiếp tục
+                                Save model and continue
                             </button>
 
                             {isSaved && !chatErrors.some(error => error.type === 'error') && (
@@ -542,7 +542,7 @@ export default function FormRate() {
                                         <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                         </svg>
-                                        <span className="text-green-800 font-semibold text-lg">Đã lưu dữ liệu thành công</span>
+                                        <span className="text-green-800 font-semibold text-lg">Saved successfully</span>
                                     </div>
                                     <button
                                         onClick={e => {
@@ -551,7 +551,7 @@ export default function FormRate() {
                                         }}
                                         className="mt-2 mb-2 inline-flex items-center justify-center px-5 py-2 bg-primary-600 text-white font-medium rounded-md shadow hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all"
                                     >
-                                        <span>Tạo yêu cầu điền đơn ngay!</span>
+                                        <span>Go to form</span>
                                         <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
@@ -567,7 +567,7 @@ export default function FormRate() {
                                             <svg className="h-5 w-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                             </svg>
-                                            <span className="text-base font-medium">Vui lòng kiểm tra và sửa các lỗi sau:</span>
+                                            <span className="text-base font-medium">Please check and fix the following errors:</span>
                                         </div>
                                         <ul className="list-disc list-inside text-sm text-left pl-5 mb-3">
                                             {chatErrors.filter(error => error.type === 'error').map((error, index) => (
@@ -578,7 +578,7 @@ export default function FormRate() {
                                             onClick={() => router.push(`/form/run/${dataForm?.form.id}`)}
                                             className="inline-flex items-center px-4 py-2 text-sm bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
                                         >
-                                            Vẫn chạy điền form
+                                            Continue
                                             <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                             </svg>

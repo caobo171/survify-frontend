@@ -37,22 +37,22 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
 }) => {
     return (
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">Chọn Model từ danh sách có sẵn</h3>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900">Select Model from the list</h3>
             {modelsData.isLoading ? (
                 <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                    <span className="ml-2 text-gray-600">Đang tải danh sách model...</span>
+                    <span className="ml-2 text-gray-600">Loading model list...</span>
                 </div>
             ) : modelsData.error ? (
                 <div className="text-red-600 p-4 bg-red-50 rounded-lg">
-                    <p>Lỗi khi tải danh sách model: {modelsData.error?.message || 'Có lỗi xảy ra'}</p>
+                    <p>Error loading model list: {modelsData.error?.message || 'An error occurred'}</p>
                 </div>
             ) : (
                 <div className="space-y-4">
                     {/* Model Selection Options */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-3">
-                            Chọn phương thức tạo Model
+                            Select Model creation method
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <button
@@ -72,8 +72,8 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
                                 <div className="flex items-center space-x-3">
                                     <div className="text-2xl">📋</div>
                                     <div>
-                                        <h3 className="font-medium">Sử dụng Model có sẵn</h3>
-                                        <p className="text-sm opacity-75">Chọn từ danh sách model đã tạo</p>
+                                        <h3 className="font-medium">Use existing model</h3>
+                                        <p className="text-sm opacity-75">Select from the list of created models</p>
                                     </div>
                                 </div>
                             </button>
@@ -84,7 +84,7 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
                                     setIsCreatingNewModel(true);
                                     setSelectedAdvanceModel(null);
                                     setAdvanceModelData({
-                                        name: 'Model mới',
+                                        name: 'New Model',
                                         nodes: [],
                                         edges: []
                                     });
@@ -97,8 +97,8 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
                                 <div className="flex items-center space-x-3">
                                     <div className="text-2xl">🆕</div>
                                     <div>
-                                        <h3 className="font-medium">Tạo Model mới</h3>
-                                        <p className="text-sm opacity-75">Xây dựng model từ đầu</p>
+                                        <h3 className="font-medium">Create new model</h3>
+                                        <p className="text-sm opacity-75">Build model from scratch</p>
                                     </div>
                                 </div>
                             </button>
@@ -130,9 +130,9 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
                                 }}
                                 options={modelsData.data?.data_models?.map((dataModel: RawDataModel) => ({
                                     value: dataModel.id,
-                                    label: `${dataModel.name} - ${(dataModel.data_model?.nodes || []).length} biến - ${new Date(dataModel.createdAt).toLocaleDateString('vi-VN')}`
+                                    label: `${dataModel.name} - ${(dataModel.data_model?.nodes || []).length} variables - ${new Date(dataModel.createdAt).toLocaleDateString('vi-VN')}`
                                 })) || []}
-                                placeholder="-- Tìm kiếm và chọn model --"
+                                placeholder="-- Search and select model --"
                                 isClearable
                                 isSearchable
                                 className="text-sm"
@@ -175,9 +175,9 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
                                     </svg>
                                     <p className="text-blue-800 text-sm font-medium">
                                         {isCreatingNewModel ? (
-                                            <>🆕 Đang tạo model mới: <strong>{advanceModelData.name}</strong></>
+                                            <>🆕 Creating new model: <strong>{advanceModelData.name}</strong></>
                                         ) : (
-                                            <>Đang chỉnh sửa model: <strong>{selectedAdvanceModel?.name}</strong></>
+                                            <>Editing model: <strong>{selectedAdvanceModel?.name}</strong></>
                                         )}
                                     </p>
                                 </div>
@@ -196,8 +196,8 @@ export const ModelSelectionComponent: React.FC<ModelSelectionComponentProps> = (
 
                     {!modelsData.data?.data_models?.length && (
                         <div className="text-center py-8 text-gray-500">
-                            <p>Không có model nào được tìm thấy.</p>
-                            <p className="text-sm mt-2">Hãy tạo model mới bằng cách chọn "Basic - Tự xây dựng Model".</p>
+                            <p>No models found.</p>
+                            <p className="text-sm mt-2">Create a new model by selecting "Basic - Self-built Model".</p>
                         </div>
                     )}
                 </div>

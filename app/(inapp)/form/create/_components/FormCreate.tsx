@@ -15,7 +15,7 @@ import { FormItem, InlineFormItem } from '@/components/form/FormItem'
 import Meta from '@/components/ui/Meta'
 
 const formCreateSchema = z.object({
-    form_link: z.string().min(1, 'Vui lòng nhập đường dẫn edit form!'),
+    form_link: z.string().min(1, 'Please enter the edit form link!'),
 });
 
 type CreateFormValues = z.infer<typeof formCreateSchema>;
@@ -46,12 +46,12 @@ export default function FormCreate() {
 
     const onSubmit = async (formData: CreateFormValues) => {
         if (!formData?.form_link) {
-            setMsg('Vui lòng nhập đường dẫn edit form!');
+            setMsg('Please enter the edit form link!');
             return;
         }
 
         if (formData?.form_link.includes('/viewform')) {
-            setMsg('Bạn đang sử dụng link xem form (/viewform). Vui lòng sử dụng link edit form (/edit) thay thế!');
+            setMsg('You are using the view form link (/viewform). Please use the edit form link (/edit) instead!');
             return;
         }
 
@@ -63,12 +63,12 @@ export default function FormCreate() {
             });
 
             if (res.data?.form) {
-                Toast.success('Tạo form thành công!');
+                Toast.success('Create form successfully!');
                 router.push(`/form/${res.data?.form?.id}`);
             }
         } catch (e) {
-            setMsg(`Đã xảy ra lỗi, bạn hãy kiểm tra xem form đã được mở quyền truy cập cho tất có mọi người có link và tắt thu thập email, tắt cho phép chỉnh sửa câu trả lời và phải tắt mỗi mail chỉ điền 1 lần hay chưa nha ! 
-                Một số câu hỏi bọn mình cũng chưa hỗ trợ ví dụ như file nè !`);
+            setMsg(`An error occurred, please check if the form has been opened to all users and disabled email collection, disabled answer editing, and disabled each email to fill in once! 
+                Some questions we do not support yet, such as file!`);
         } finally {
             setLoading(false);
         }

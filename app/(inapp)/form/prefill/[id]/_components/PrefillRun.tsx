@@ -102,9 +102,9 @@ export default function PrefillRun() {
 
             }
 
-            Toast.success('Dữ liệu đã được tải thành công!');
+            Toast.success('Data has been loaded successfully!');
         } catch (err) {
-            setError("Lỗi khi kiểm tra dữ liệu, vui lòng kiểm tra lại quyền truy cập Google Sheet của bạn!");
+            setError("An error occurred when checking the data, please check your Google Sheet access permissions!");
         } finally {
             setIsLoading(false);
         }
@@ -139,7 +139,7 @@ export default function PrefillRun() {
             });
 
             if (response.data?.code == Code.SUCCESS) {
-                Toast.success('Đã tạo yêu cầu điền form thành công!');
+                Toast.success('Successfully created a request to fill the form!');
                 router.push(`/`);
 
 
@@ -155,14 +155,14 @@ export default function PrefillRun() {
                 }
 
             } else {
-                Toast.error(response.data?.message || 'Đã xảy ra lỗi, vui lòng thử lại!');
+                Toast.error(response.data?.message || 'An error occurred, please try again!');
                 console.error('Form submission failed');
             }
 
             console.log("res", response);
             setIsLoading(false);
         } catch (err) {
-            Toast.error('Đã xảy ra lỗi, vui lòng thử lại!');
+            Toast.error('An error occurred, please try again!');
             console.error('Form submission failed');
             setIsLoading(false);
 
@@ -192,12 +192,12 @@ export default function PrefillRun() {
 
 
         if (!dataForm?.latest_form_questions) {
-            return addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ bật quyền chia sẻ nhé cho bất kì ai có link nhé`, `00000`, "error");
+            return addChatError(chatErrors, `System cannot check config currently, please remember to turn on share permission for anyone with link`, `00000`, "error");
         }
 
         const latest_form_questions = dataForm?.latest_form_questions || [];
         if (latest_form_questions.length !== dataForm?.form.loaddata?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu form hiện tại và dữ liệu form mới nhất. Hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current form and the latest form. Please check the latest form`, `00000`, "error");
         }
 
         let min_length = Math.min(latest_form_questions.length, dataForm?.form.loaddata?.length || 0);
@@ -207,7 +207,7 @@ export default function PrefillRun() {
 
             if (question?.type != latest_question?.type) {
                 console.log(question, latest_question);
-                addChatError(chatErrors, `Có sự khác nhau giữa câu hỏi ${question.question} - ${question.description} với config mới nhất, hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current question and the latest question. Please check the latest question`, `00000`, "error");
                 continue;
             }
 
@@ -216,7 +216,7 @@ export default function PrefillRun() {
                 let answers = question.answer || [];
 
                 if (latest_answers.length !== answers.length) {
-                    addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                    addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                     continue;
                 }
 
@@ -230,7 +230,7 @@ export default function PrefillRun() {
                     // }
 
                     if (latest_answer.go_to_section != answer.go_to_section) {
-                        addChatError(chatErrors, `Có sự khác nhau về hướng đi theo câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                         break;
                     }
                 }
@@ -239,7 +239,7 @@ export default function PrefillRun() {
 
         const latest_form_sections = dataForm?.latest_form_sections || [];
         if (latest_form_sections.length !== dataForm?.form.sections?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu section hiện tại và dữ liệu section mới nhất. Hãy kiểm tra lại dữ liệu section mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
         }
 
         const min_sections_length = Math.min(latest_form_sections.length, dataForm?.form.sections?.length || 0);
@@ -248,7 +248,7 @@ export default function PrefillRun() {
             const latest_section = latest_form_sections[i];
             const section = dataForm?.form.sections[i];
             if (latest_section.next_section != section.next_section) {
-                addChatError(chatErrors, `Có sự khác nhau về điều hướng section với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
                 break;
             }
         }
@@ -256,37 +256,37 @@ export default function PrefillRun() {
 
         // Config validation logic
         if (dataForm?.config?.lang === null) {
-            addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email và tắt giới hạn trả lời nhé`, `00000`, "warning");
+            addChatError(chatErrors, `System cannot check config currently, please remember to turn off collect email and limit answer`, `00000`, "warning");
         } else {
             if (dataForm?.config?.isValidPublished === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Form chưa Xuất bản/Publish. Nếu là Form cũ (trước 2025) có thể bỏ qua lỗi này.`, `00004`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Form has not been published. If it is an old form (before 2025), you can ignore this error.`, `00004`, "error");
             } else if (dataForm?.config?.isValidPublished === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ Xuất bản/Publish Form nhé!`, `00004`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to publish Form`, `00004`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải chọn "Không thu thập email/ Do not Collect" trong setting.`, `00001`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must select "Do not Collect" in setting.`, `00001`, "error");
             } else if (dataForm?.config?.isValidCollectEmail === "null") {
-                addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email. Phải chọn "Không thu thập email/ Do not Collect" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `System cannot check config, please remember to turn off collect email`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidEditAnswer === "false") {
                 addChatError(chatErrors, `<b>Google Form!</b> Phải tắt cho phép chỉnh sửa câu trả lời trong setting.`, `00002`, "error");
             } else if (dataForm?.config?.isValidEditAnswer === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt "cho phép chỉnh sửa câu trả lời" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Allow editing responses" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidLimitRes === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt mọi giới hạn trả lời trong setting.`, `00003`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must turn off "Limit responses to one per person" in setting.`, `00003`, "error");
             } else if (dataForm?.config?.isValidLimitRes === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt mọi giới hạn trả lời trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Limit responses to one per person" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "true" &&
                 dataForm?.config?.isValidEditAnswer === "true" &&
                 dataForm?.config?.isValidLimitRes === "true" &&
                 dataForm?.config?.isValidPublished === "true") {
-                addChatError(chatErrors, `Tuyệt! Google form này setting OK. Hãy chuẩn bị data và nhập link data để bắt đầu.`, `00005`, "note");
+                addChatError(chatErrors, `Perfect! Google form setting OK. Please prepare data and enter data link to start.`, `00005`, "note");
             }
         }
     };
@@ -354,9 +354,9 @@ export default function PrefillRun() {
         <>
             {isLoading && <LoadingAbsolute />}
             <section className=" ">
-                <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
+                <div className=" " data-aos="fade-up">
                     <div className="container mx-auto mb-8">
-                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Điền theo data có trước</h1>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-left text-gray-900">Fill in the form with data</h1>
 
                         <FormTypeNavigation formId={dataForm?.form?.id} type={'prefill'} />
 
@@ -366,27 +366,27 @@ export default function PrefillRun() {
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p>Hãy nhập link Google Sheet bộ data có sẵn của bạn vào ô dưới đây</p>
+                                    <p>Enter the Google Sheet link of the data you have into the box below</p>
                                 </div>
                                 <div className="flex items-start gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                     </svg>
-                                    <p>Vui lòng xem kỹ hướng dẫn bên dưới trước khi thực hiện. Video hướng dẫn chi tiết: <a target="_blank" href="https://www.youtube.com/watch?v=5UM5Q2-jsBI" className="text-primary-600 font-medium hover:underline">Xem tại đây</a></p>
+                                    <p>Before executing, please carefully read the instructions below. Video tutorial: <a target="_blank" href="https://www.youtube.com/watch?v=5UM5Q2-jsBI" className="text-primary-600 font-medium hover:underline">Watch here</a></p>
                                 </div>
                                 <div className="flex items-start gap-2">
                                     <svg className="flex-shrink-0 h-5 w-5 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                     <p>
-                                        Nếu bạn có thay đổi ở Google Form, hãy
+                                        If you change Google Form, please
                                         <button onClick={syncFormHandle} className="mx-1 px-3 py-0.5 bg-primary-100 text-primary-700 rounded-full font-medium hover:bg-primary-200 transition inline-flex items-center">
                                             <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                             </svg>
-                                            đồng bộ lại cấu hình
+                                            sync config
                                         </button>
-                                        để cập nhật lại nhé
+                                        to update again
                                     </p>
                                 </div>
                             </div>
@@ -395,11 +395,11 @@ export default function PrefillRun() {
 
                     <div className="container mx-auto mb-8">
                         <form onSubmit={(e) => onCheckData(e)} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-900">Thông tin Form</h3>
+                            <h3 className="text-lg font-semibold mb-4 text-gray-900">Form Information</h3>
                             <div className="space-y-4">
                                 <div className="relative">
                                     <label htmlFor="urlMain" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                                        Link Form
+                                        Form Link
                                     </label>
                                     <div className="flex">
                                         <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
@@ -419,7 +419,7 @@ export default function PrefillRun() {
 
                                 <div className="relative">
                                     <label htmlFor="formName" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                                        Tên Form
+                                        Form Name
                                     </label>
                                     <div className="flex">
                                         <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
@@ -439,7 +439,7 @@ export default function PrefillRun() {
 
                                 <div className="relative">
                                     <label htmlFor="dataUrl" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                                        Link Data của bạn
+                                        Link Data of you
                                     </label>
                                     <div className="flex">
                                         <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
@@ -466,7 +466,7 @@ export default function PrefillRun() {
                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
-                                Kiểm tra dữ liệu
+                                Check data
                             </button>
                         </form>
                     </div>
@@ -488,7 +488,7 @@ export default function PrefillRun() {
                         <form onSubmit={handleSubmit(onSubmitPrefill)} className="container mx-auto">
                             <div className="space-y-6">
                                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                                    <h3 className="text-lg font-semibold mb-4 text-gray-900">Liên kết dữ liệu với câu hỏi</h3>
+                                    <h3 className="text-lg font-semibold mb-4 text-gray-900">Link data with question</h3>
                                     <div className="space-y-4">
                                         {prefillForm?.loaddata && prefillForm?.loaddata?.map((data: any, index: any) => (
                                             <div key={index} className="p-2 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-sm transition-shadow">
@@ -511,7 +511,7 @@ export default function PrefillRun() {
                                                                 htmlFor={`question_${data.id}`}
                                                                 className="absolute -top-2 left-2 inline-block rounded-lg bg-white px-1 text-xs font-medium text-gray-600"
                                                             >
-                                                                Chọn cột để liên kết dữ liệu
+                                                                Select column to link data
                                                             </label>
                                                             <select
                                                                 id={`question_${data.id}`}
@@ -594,7 +594,7 @@ export default function PrefillRun() {
                                                 <svg className="h-5 w-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                                 </svg>
-                                                <span className="text-base font-medium">Vui lòng kiểm tra và sửa các lỗi sau:</span>
+                                                <span className="text-base font-medium">Please check and fix the following errors:</span>
                                             </div>
                                             <ul className="list-disc list-inside text-sm text-left pl-5 mb-3">
                                                 {chatErrors.filter(error => error.type === 'error').map((error, index) => (
@@ -613,13 +613,13 @@ export default function PrefillRun() {
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p className="font-medium">Nếu bạn <strong>thao tác lần đầu</strong>, hãy tạo bản sao cho form của mình và thực hiện trên bản sao trước nhé!</p>
+                                    <p className="font-medium">If you <strong>first time</strong>, please create a copy of your form and perform on the copy before!</p>
                                 </div>
                                 <h2 className="text-2xl font-bold mb-2 text-gray-900 flex items-center gap-2">
                                     <svg className="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                     </svg>
-                                    Hướng Dẫn
+                                    Guide
                                 </h2>
                             </div>
 
@@ -632,19 +632,19 @@ export default function PrefillRun() {
                                     <div className="space-y-2 ml-8">
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Dòng đầu tiên là label cột dữ liệu, các cột nên sắp xếp theo thứ tự câu hỏi trong Google Form</span>
+                                            <span>The first row is the label column data, the columns should be sorted in order of questions in Google Form</span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span><strong>Trắc nhiệm (chọn 1 đáp án):</strong> Nhập <strong>số thứ tự</strong> của đáp án trong form, bắt đầu từ 1</span>
+                                            <span><strong>Multiple choice (select one answer):</strong> Enter <strong>answer number</strong> of the answer in the form, starting from 1</span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span><strong>Trắc nhiệm (chọn nhiều đáp án):</strong> Nhập số tự tự đáp án ngăn cách bằng //, ví dụ: 1//3//4</span>
+                                            <span><strong>Multiple choice (select multiple answers):</strong> Enter <strong>answer number</strong> of the answer in the form, separated by //, example: 1//3//4</span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span><strong>Tự luận:</strong> Nhập trực tiếp đáp án, cố hạn chế dấu , ; và xuống dòng</span>
+                                            <span><strong>Short answer:</strong> Enter the answer directly, avoid using , ; and new line</span>
                                         </p>
 
                                         <div className="mt-4 p-3 bg-blue-50 rounded-md border border-blue-100 text-blue-800">
@@ -658,7 +658,7 @@ export default function PrefillRun() {
                                         </div>
 
                                         <div className="mt-3 p-3 bg-yellow-50 rounded-md border border-yellow-100 text-yellow-800">
-                                            <p>Bạn có thể sử dụng tính năng <strong>mã hóa data</strong> để có data chuẩn hóa nhanh chóng (Hướng dẫn tại link video đầu trang).</p>
+                                            <p>You can use the <strong>data encryption</strong> feature to have data standardized quickly (Guidance at the video link at the top of the page).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -673,7 +673,7 @@ export default function PrefillRun() {
                                             className="w-full object-contain"
                                         />
                                         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-2 text-xs">
-                                            Ví dụ về dữ liệu chuẩn hóa
+                                            Example of standardized data
                                         </div>
                                     </div>
                                 </div>
@@ -683,16 +683,16 @@ export default function PrefillRun() {
                                 <div className="p-5 bg-gray-50 rounded-lg border border-gray-100">
                                     <div className="flex items-center gap-2 mb-3">
                                         <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary-600 text-white font-bold text-xs">2</span>
-                                        <h3 className="text-lg font-bold text-gray-900">Căn sửa data</h3>
+                                        <h3 className="text-lg font-bold text-gray-900">Adjust data</h3>
                                     </div>
                                     <div className="space-y-2 ml-8">
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Chọn toàn bộ <strong>phần data trong câu hỏi chọn nhiều đáp án</strong> và chuyển về định dạng kí tự <strong>"Plain Text"</strong></span>
+                                            <span>Select the entire <strong>data in the multiple choice question</strong> and convert it to <strong>"Plain Text"</strong> format</span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Chỉnh sửa, thêm xóa dữ liệu theo điều hướng session phù hợp (nếu có)</span>
+                                            <span>Edit, add, delete data according to the session direction (if any)</span>
                                         </p>
                                     </div>
                                 </div>
@@ -707,7 +707,7 @@ export default function PrefillRun() {
                                             className="w-full object-contain"
                                         />
                                         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-2 text-xs">
-                                            Định dạng "Plain Text" cho dữ liệu
+                                            Convert "Plain Text" for data
                                         </div>
                                     </div>
                                 </div>
@@ -717,24 +717,24 @@ export default function PrefillRun() {
                                 <div className="p-5 bg-gray-50 rounded-lg border border-gray-100">
                                     <div className="flex items-center gap-2 mb-3">
                                         <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary-600 text-white font-bold text-xs">3</span>
-                                        <h3 className="text-lg font-bold text-gray-900">Copy đường dẫn edit của data sheet Google</h3>
+                                        <h3 className="text-lg font-bold text-gray-900">Copy edit link of data sheet Google</h3>
                                     </div>
                                     <div className="space-y-2 ml-8">
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Tải bộ data excel của bạn lên <strong>google sheet</strong></span>
+                                            <span>Upload all data excel of you to <strong>google sheet</strong></span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Mở <strong>quyền truy cập edit</strong> cho file này</span>
+                                            <span>Open <strong>edit access</strong> for this file</span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Copy đường dẫn edit của sheet vào ô phía trên, <strong>phải có đuôi /edit</strong></span>
+                                            <span>Copy edit link of sheet into the box above, <strong>must have /edit suffix</strong></span>
                                         </p>
                                         <p className="flex items-start gap-2">
                                             <span className="text-primary-600 font-bold">•</span>
-                                            <span>Ấn <strong>Kiểm tra dữ liệu</strong>, sau đó chỉnh sửa liên kết dữ liệu với câu hỏi</span>
+                                            <span>Click <strong>Check data</strong>, then adjust data link with questions</span>
                                         </p>
                                     </div>
                                 </div>
@@ -749,7 +749,7 @@ export default function PrefillRun() {
                                             className="w-full object-contain"
                                         />
                                         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-2 text-xs">
-                                            Đường dẫn Google Sheet có đuôi /edit
+                                            Google Sheet edit link
                                         </div>
                                     </div>
                                 </div>

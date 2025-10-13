@@ -205,7 +205,7 @@ export default function DataModelBuilder() {
     return (
         <>
             <section className=" ">
-                <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
+                <div className=" " data-aos="fade-up">
                     {(loading) && <LoadingAbsolute />}
                     <div className="container mx-auto mb-8">
                         <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Build dữ liệu đẹp</h1>
@@ -261,12 +261,12 @@ export default function DataModelBuilder() {
                                 }
 
                                 {/* Sample Size Input */}
-                                <FormItem label="Tên của model">
+                                <FormItem label="Model name">
                                     <Input
                                         type="text"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
-                                        placeholder="Nhập Tên model để lưu"
+                                        placeholder="Enter model name to save"
                                     />
                                 </FormItem>
 
@@ -281,7 +281,7 @@ export default function DataModelBuilder() {
                                             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                             </svg>
-                                            Lưu mô hình và tiếp tục, nhập số mẫu mong muốn ở bước này
+                                            Save model and continue, enter the number of samples you want at this step
                                         </div>
                                     </Button>
                                 ) : (
@@ -324,7 +324,7 @@ export default function DataModelBuilder() {
                                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V9a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                                 </svg>
-                                                Kiểm tra kết quả dữ liệu
+                                                Check data result
                                             </button>
                                         ) : (
                                             <button
@@ -337,7 +337,7 @@ export default function DataModelBuilder() {
                                                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                                 </svg>
-                                                {loading ? 'Đang xử lý...' : 'Tạo yêu cầu tải dữ liệu'}
+                                                {loading ? 'Processing...' : 'Create download order'}
                                             </button>
                                         )}
 

@@ -80,12 +80,12 @@ export default function FormAIOrder() {
 
 
         if (!dataForm?.latest_form_questions) {
-            return addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ bật quyền chia sẻ nhé cho bất kì ai có link nhé`, `00000`, "error");
+            return addChatError(chatErrors, `System cannot check config currently, please remember to share form with anyone who has link`, `00000`, "error");
         }
 
         const latest_form_questions = dataForm?.latest_form_questions || [];
         if (latest_form_questions.length !== dataForm?.form.loaddata?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu form hiện tại và dữ liệu form mới nhất. Hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current form data and the latest form data. Please check the latest form data`, `00000`, "error");
         }
 
         let min_length = Math.min(latest_form_questions.length, dataForm?.form.loaddata?.length || 0);
@@ -95,7 +95,7 @@ export default function FormAIOrder() {
 
             if (question?.type != latest_question?.type) {
                 console.log(question, latest_question);
-                addChatError(chatErrors, `Có sự khác nhau giữa câu hỏi ${question.question} - ${question.description} với config mới nhất, hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current question and the latest question. Please check the latest question`, `00000`, "error");
                 continue;
             }
 
@@ -104,7 +104,7 @@ export default function FormAIOrder() {
                 let answers = question.answer || [];
 
                 if (latest_answers.length !== answers.length) {
-                    addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                    addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                     continue;
                 }
 
@@ -118,7 +118,7 @@ export default function FormAIOrder() {
                     // }
 
                     if (latest_answer.go_to_section != answer.go_to_section) {
-                        addChatError(chatErrors, `Có sự khác nhau về hướng đi theo câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                         break;
                     }
                 }
@@ -127,7 +127,7 @@ export default function FormAIOrder() {
 
         const latest_form_sections = dataForm?.latest_form_sections || [];
         if (latest_form_sections.length !== dataForm?.form.sections?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu section hiện tại và dữ liệu section mới nhất. Hãy kiểm tra lại dữ liệu section mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
         }
 
         const min_sections_length = Math.min(latest_form_sections.length, dataForm?.form.sections?.length || 0);
@@ -136,7 +136,7 @@ export default function FormAIOrder() {
             const latest_section = latest_form_sections[i];
             const section = dataForm?.form.sections[i];
             if (latest_section.next_section != section.next_section) {
-                addChatError(chatErrors, `Có sự khác nhau về điều hướng section với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
                 break;
             }
         }
@@ -144,37 +144,37 @@ export default function FormAIOrder() {
 
         // Config validation logic
         if (dataForm?.config?.lang === null) {
-            addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email và tắt giới hạn trả lời nhé`, `00000`, "warning");
+            addChatError(chatErrors, `System cannot check config currently, please remember to share form with anyone who has link`, `00000`, "warning");
         } else {
             if (dataForm?.config?.isValidPublished === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Form chưa Xuất bản/Publish. Nếu là Form cũ (trước 2025) có thể bỏ qua lỗi này.`, `00004`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Form has not been published. If it is an old form (before 2025), you can ignore this error.`, `00004`, "error");
             } else if (dataForm?.config?.isValidPublished === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ Xuất bản/Publish Form nhé!`, `00004`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to publish Form!`, `00004`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải chọn "Không thu thập email/ Do not Collect" trong setting.`, `00001`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must select "Do not collect email" in settings.`, `00001`, "error");
             } else if (dataForm?.config?.isValidCollectEmail === "null") {
-                addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email. Phải chọn "Không thu thập email/ Do not Collect" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off email collection`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidEditAnswer === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt cho phép chỉnh sửa câu trả lời trong setting.`, `00002`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must turn off "Allow editing answers" in settings.`, `00002`, "error");
             } else if (dataForm?.config?.isValidEditAnswer === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt "cho phép chỉnh sửa câu trả lời" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Allow editing answers" in settings`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidLimitRes === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt mọi giới hạn trả lời trong setting.`, `00003`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must turn off "Limit responses to 1 per person" in settings.`, `00003`, "error");
             } else if (dataForm?.config?.isValidLimitRes === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt mọi giới hạn trả lời trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Limit responses to 1 per person" in settings`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "true" &&
                 dataForm?.config?.isValidEditAnswer === "true" &&
                 dataForm?.config?.isValidLimitRes === "true" &&
                 dataForm?.config?.isValidPublished === "true") {
-                addChatError(chatErrors, `Tuyệt! Google form này setting OK. Hãy điền prompt để điền form nhé.`, `00005`, "note");
+                addChatError(chatErrors, `Perfect! Google form setting OK. Please fill in the form now.`, `00005`, "note");
             }
         }
     };
@@ -308,9 +308,9 @@ export default function FormAIOrder() {
                 removeChatError={removeChatError}
             />
             <section className=" ">
-                <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
+                <div className=" " data-aos="fade-up">
                     <div className="container mx-auto mb-8">
-                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Điền form bằng AI Agent</h1>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-left text-gray-900">Fill in the form with AI agent</h1>
 
                         <FormTypeNavigation formId={dataForm.form.id} type={'ai'} />
 
@@ -319,49 +319,49 @@ export default function FormAIOrder() {
                                 <div className="space-y-4 text-xs text-gray-700">
                                     <div className="flex items-start gap-2">
                                         <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                        <p>Điền form tự động bằng AI Agent thông minh, tạo ra dữ liệu đa dạng và chân thực.</p>
+                                        <p>Fill in the form automatically using an AI agent, creating diverse and authentic data.</p>
                                     </div>
                                     <div className="flex items-start gap-2">
                                         <svg className="flex-shrink-0 h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                                        <p>Bạn có thể điều chỉnh kết quả mong muốn và tốc độ điền form theo nhu cầu.</p>
+                                        <p>You can adjust the desired outcome and the speed of form filling according to your needs.</p>
                                     </div>
                                     <div className="flex items-start gap-2">
                                         <svg className="flex-shrink-0 h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                                        <p>Nếu mô hình của bạn chứa biến điều tiết AI sẽ chưa xử lý được, hãy liên hệ với chúng tôi để được hỗ trợ</p>
+                                        <p>If your model contains variables that AI cannot process, please contact us for support</p>
                                     </div>
                                     <div className="flex items-start gap-2">
                                         <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                                        <p>Nếu bạn có thay đổi ở Google Form, hãy <button onClick={syncFormHandle} className="mx-1 px-2 py-0.5 bg-primary-100 text-primary-700 rounded-md font-semibold hover:bg-primary-200 transition-all duration-200 inline-flex items-center text-sm">đồng bộ lại cấu hình</button> để cập nhật.</p>
+                                        <p>If you have changed anything in Google Form, please <button onClick={syncFormHandle} className="mx-1 px-2 py-0.5 bg-primary-100 text-primary-700 rounded-md font-semibold hover:bg-primary-200 transition-all duration-200 inline-flex items-center text-sm">sync form</button> to update.</p>
                                     </div>
 
                                     <div className="flex items-center gap-2">
                                         <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                         </svg>
-                                        <p>Video hướng dẫn chi tiết: <a target="_blank" href="https://www.youtube.com/watch?v=1tllw_ZCHls" className="text-primary-600 font-medium hover:underline">Xem tại đây</a></p>
+                                        <p>Video tutorial: <a target="_blank" href="https://www.youtube.com/watch?v=1tllw_ZCHls" className="text-primary-600 font-medium hover:underline">Watch here</a></p>
                                     </div>
                                 </div>
                                 <div className="border-t md:border-t-0 md:border-l border-gray-200 mt-6 md:mt-0 pt-6 md:pt-0 md:pl-8">
                                     <ul className="space-y-3 text-xs text-gray-700">
                                         <li className="flex items-start gap-2 transition-all duration-200 hover:text-primary-600">
                                             <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                                            <p>Tạo ra dữ liệu chân thực và có ý nghĩa học thuật.</p>
+                                            <p>Generate authentic and meaningful data.</p>
                                         </li>
                                         <li className="flex items-start gap-2 transition-all duration-200 hover:text-primary-600">
                                             <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                                            <p>Tự động điền form liên kết chuẩn dữ liệu nhân khẩu học theo yêu cầu.</p>
+                                            <p>Automatically fill in the form with demographic data according to your requirements.</p>
                                         </li>
                                         <li className="flex items-start gap-2 transition-all duration-200 hover:text-primary-600">
                                             <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                                            <p>Tự động điền form để dữ liệu nghiên cứu có ý nghĩa.</p>
+                                            <p>Automatically fill in the form to make research data meaningful.</p>
                                         </li>
                                         <li className="flex items-start gap-2 transition-all duration-200 hover:text-primary-600">
                                             <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                                            <p>Xuất báo cáo học thuật, đọc dữ liệu miễn phí.</p>
+                                            <p>Export academic reports, read data for free.</p>
                                         </li>
                                         <li className="flex items-start gap-2 transition-all duration-200 hover:text-primary-600">
                                             <svg className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                                            <p>Phù hợp cho các nghiên cứu về các mô hình hồi quy, mô hình SEM trong phần mềm SPSS.</p>
+                                            <p>Applicable for research on regression models, SEM models in SPSS software.</p>
                                         </li>
 
                                     </ul>
@@ -398,10 +398,10 @@ export default function FormAIOrder() {
                                             </h3>
 
                                             <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm pl-2 mb-8">
-                                                <li>Loại bỏ điều hướng session, chỉ nên dùng 1 luồng khảo sát cho 1 đối tượng</li>
-                                                <li>Viết prompt để Pass qua hết gạn lọc, mặc định chúng đều hợp lệ</li>
-                                                <li>Không nên trộn lẫn kết quả với các nguồn khảo sát khác</li>
-                                                <li>Mô tả càng chi tiết, AI càng hiểu rõ mong muốn của bạn</li>
+                                                <li>Remove session redirection, only use 1 survey flow for 1 subject</li>
+                                                <li>Write prompts to pass through all filters, by default they are all valid</li>
+                                                <li>Do not mix results with other survey sources</li>
+                                                <li>The more detailed the description, the better AI understands your requirements</li>
                                             </ul>
                                         </div>
 
@@ -412,7 +412,7 @@ export default function FormAIOrder() {
                                                 <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                Kết quả mẫu
+                                                Sample result
                                             </h3>
 
                                             <div className="flex-1">
@@ -449,7 +449,7 @@ export default function FormAIOrder() {
                                                                 <svg className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                                 </svg>
-                                                                Bảng dữ liệu
+                                                                Data table
                                                                 <svg className="h-4 w-4 text-primary-600 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                                                 </svg>
@@ -464,7 +464,7 @@ export default function FormAIOrder() {
                                                                 <svg className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                                                 </svg>
-                                                                Báo cáo kết quả
+                                                                Result report
                                                                 <svg className="h-4 w-4 text-primary-600 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                                                 </svg>
@@ -481,7 +481,7 @@ export default function FormAIOrder() {
                                         <div className="w-full lg:w-1/2 flex flex-col">
                                             <div className="relative flex-1">
                                                 <label htmlFor="demographicGoal" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                                                    Yêu cầu nhân khẩu học mong muốn
+                                                    Demographic goal
                                                 </label>
                                                 <textarea
                                                     id="demographicGoal"
@@ -503,7 +503,7 @@ export default function FormAIOrder() {
                                         <div className="w-full lg:w-1/2 flex flex-col">
                                             <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
                                                 <div className="flex items-center mb-4">
-                                                    <span className="font-medium text-xs">Yêu cầu nhân khẩu học mong muốn</span>
+                                                    <span className="font-medium text-xs">Demographic goal</span>
                                                 </div>
                                                 <div className="bg-white p-3 rounded border border-gray-200 overflow-y-auto max-h-[200px] text-xs">
                                                     <div className="text-gray-700">
@@ -532,16 +532,15 @@ export default function FormAIOrder() {
                                                         value={spssGoal}
                                                         onChange={(e) => setSpssGoal(e.target.value)}
                                                         className="w-full p-3 border text-xs rounded-md border-gray-300 focus:ring-2 focus:ring-primary-600 focus:border-transparent h-[350px]"
-                                                        placeholder={`Mô hình hồi quy 5 biến độc lập TC,NC,AT,CX,TN tác động 1 biến phụ thuộc "sự hài lòng". Sử dụng thang đo linkert 5
-Nghiên cứu các giả thuyết các yếu tố ảnh hưởng tích cực đến sự hài lòng. Yêu cầu chấp nhận tất cả các giả thuyết.
-Chú thích các yếu tố tương ứng với các câu hỏi trong form như sau
+                                                        placeholder={`Regression model with 5 independent variables: TC,NC,AT,CX,TN affecting 1 dependent variable "sự hài lòng". Use linkert scale 5
+Research hypotheses that factors affect positively to satisfaction. Accept all hypotheses.
+Explain factors corresponding to questions in the form as follows
 TC:Khả năng tiếp cận
 NC: Tính nhanh chóng
 AT: An toàn , An ninh
 CX:Tính chính xác
 TN: Tiện nghi, thoải mái
-Xác định và đo lường mức độ ảnh hưởng của các yếu tố trên đến sự hài lòng chất lượng dịch vụ
-Xác định các yếu tố này tác động trực tiếp hay gián tiếp đến sự hài lòng chất lượng dịch vụ`}
+Determine and measure the degree of influence of these factors on customer satisfaction with service quality`}
                                                         maxLength={MAX_EXPECTED_OUTCOME_LENGTH}
                                                     />
                                                 </div>
@@ -576,7 +575,7 @@ Xác định các yếu tố này tác động trực tiếp hay gián tiếp đ
                                                 </svg>
                                             </div>
                                             <p className="text-sm text-yellow-700">
-                                                Các số liệu về tỉ lệ sẽ chỉ là tương đối không thể chính xác 100%, AI agent sẽ điều chỉnh cho sát với thực tế nhất
+                                                The ratio data will only be relative and cannot be 100% accurate, AI agent will adjust to the nearest real value
                                             </p>
                                         </div>
                                     </div>
@@ -585,7 +584,7 @@ Xác định các yếu tố này tác động trực tiếp hay gián tiếp đ
                                             <svg className="flex-shrink-0 h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                             </svg>
-                                            <h3 className="text-xl font-bold text-gray-900">TẠO YÊU CẦU ĐIỀN FORM</h3>
+                                            <h3 className="text-xl font-bold text-gray-900">CREATE ORDER</h3>
                                         </div>
 
                                         <CreateOrderForm
@@ -626,7 +625,7 @@ Xác định các yếu tố này tác động trực tiếp hay gián tiếp đ
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            {isLoading ? 'Đang xử lý...' : 'Đặt đơn ngay'}
+                                            {isLoading ? 'Processing...' : 'Create order'}
                                         </button>
                                     </div>
                                 </form>

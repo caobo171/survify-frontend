@@ -357,7 +357,7 @@ export default function BuildDataForm() {
                 const errorId = `error-${input.id}`;
 
                 if (value < 0 || value > 100) {
-                    addChatError(chatErrors, `Giá trị không hợp lệ (${value}). Hãy điền tỉ lệ (%) là số tự nhiên từ 0-100`, errorId, "error");
+                    addChatError(chatErrors, `Invalid value (${value}). Please fill in percentage (%) is a natural number from 0-100`, errorId, "error");
                 }
             }
         });
@@ -378,7 +378,7 @@ export default function BuildDataForm() {
                     });
 
                     if (sum < 120) {
-                        addChatError(chatErrors, `Câu chọn nhiều đáp án. Cần điền tỉ lệ (%) là số tự nhiên từ 0-100. Và tổng tỉ lệ nên lớn hơn 120, để trộn tốt nhất (hiện tại: ${sum})`, `multi-error-${questionId}`, "error");
+                        addChatError(chatErrors, `Multi-choice question. Need to fill in percentage (%) is a natural number from 0-100. And the total percentage should be greater than 120, to mix the best (currently: ${sum})`, `multi-error-${questionId}`, "error");
                     }
                 }
             }
@@ -392,7 +392,7 @@ export default function BuildDataForm() {
 
                 let question = dataForm?.latest_form_questions?.find(q => q.id == questionId);
                 if (select.value.toLowerCase().includes("other")) {
-                    addChatError(chatErrors, `Bạn chọn "other - bỏ qua không điền". Hãy kiểm tra lại đã tắt bắt buộc điền câu hỏi <b>${question?.question} - ${question?.description || ''}</b> trên Google Form chưa?`, `select-error-${select.id}`, question?.required ? "error" : "warning");
+                    addChatError(chatErrors, `You selected "other - skip not fill". Please check again whether you have turned off mandatory fill in the question <b>${question?.question} - ${question?.description || ''}</b> on Google Form?`, `select-error-${select.id}`, question?.required ? "error" : "warning");
                 }
             }
         });
@@ -401,12 +401,12 @@ export default function BuildDataForm() {
     const validateConfig = (chatErrors: ChatError[]): void => {
 
         if (!dataForm?.latest_form_questions) {
-            return addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ bật quyền chia sẻ nhé cho bất kì ai có link nhé`, `00000`, "error");
+            return addChatError(chatErrors, `System cannot check config currently, please remember to share form with anyone who has link`, `00000`, "error");
         }
 
         const latest_form_questions = dataForm?.latest_form_questions || [];
         if (latest_form_questions.length !== dataForm?.form.loaddata?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu form hiện tại và dữ liệu form mới nhất. Hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current form data and the latest form data. Please check the latest form data`, `00000`, "error");
         }
 
         let min_length = Math.min(latest_form_questions.length, dataForm?.form.loaddata?.length || 0);
@@ -417,12 +417,12 @@ export default function BuildDataForm() {
 
             if (question?.type != latest_question?.type) {
                 console.log(question, latest_question);
-                addChatError(chatErrors, `Có sự khác nhau giữa câu hỏi ${question.question} - ${question.description || ''} với config mới nhất, hãy kiểm tra lại dữ liệu form mới nhất nhé!`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current question and the latest question. Please check the latest question`, `00000`, "error");
                 continue;
             }
 
             if (question.type == QUESTION_TYPE.FILE) {
-                addChatError(chatErrors, `Chưa hỗ trợ câu hỏi loại file ${question.question} - ${question.description || ''}`, `00000`, "error");
+                addChatError(chatErrors, `Not supported question type file ${question.question} - ${question.description || ''}`, `00000`, "error");
                 continue;
             }
 
@@ -431,7 +431,7 @@ export default function BuildDataForm() {
                 let answers = question.answer || [];
 
                 if (latest_answers.length !== answers.length) {
-                    addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                    addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                     continue;
                 }
 
@@ -440,12 +440,12 @@ export default function BuildDataForm() {
                     const answer = answers[j];
 
                     if (latest_answer.data != answer.data) {
-                        addChatError(chatErrors, `Có sự khác nhau về cấu hình câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                         break;
                     }
 
                     if (latest_answer.go_to_section != answer.go_to_section) {
-                        addChatError(chatErrors, `Có sự khác nhau về hướng đi theo câu trả lời <b>${latest_answer.data}</b> trong câu hỏi <b>${question.question} - ${question.description || ''}</b> với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                        addChatError(chatErrors, `There is a difference between the current answer and the latest answer. Please check the latest answer`, `00000`, "error");
                         break;
                     }
                 }
@@ -454,7 +454,7 @@ export default function BuildDataForm() {
 
         const latest_form_sections = dataForm?.latest_form_sections || [];
         if (latest_form_sections.length !== dataForm?.form.sections?.length) {
-            addChatError(chatErrors, `Có sự khác nhau giữa dữ liệu section hiện tại và dữ liệu section mới nhất. Hãy kiểm tra lại dữ liệu section mới nhất nhé!`, `00000`, "error");
+            addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
         }
 
         const min_sections_length = Math.min(latest_form_sections.length, dataForm?.form.sections?.length || 0);
@@ -463,7 +463,7 @@ export default function BuildDataForm() {
             const latest_section = latest_form_sections[i];
             const section = dataForm?.form.sections[i];
             if (latest_section.next_section != section.next_section) {
-                addChatError(chatErrors, `Có sự khác nhau về điều hướng section với config mới nhất của Google Form, hãy đồng bộ lại`, `00000`, "error");
+                addChatError(chatErrors, `There is a difference between the current section and the latest section. Please check the latest section`, `00000`, "error");
                 break;
             }
         }
@@ -471,37 +471,37 @@ export default function BuildDataForm() {
 
         // Config validation logic
         if (dataForm?.config?.lang === null) {
-            addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email và tắt giới hạn trả lời nhé`, `00000`, "warning");
+            addChatError(chatErrors, `System cannot check config currently, please remember to turn off collect email and limit answer`, `00000`, "warning");
         } else {
             if (dataForm?.config?.isValidPublished === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Form chưa Xuất bản/Publish. Nếu là Form cũ (trước 2025) có thể bỏ qua lỗi này.`, `00004`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Form has not been published. If it is an old form (before 2025), you can ignore this error.`, `00004`, "error");
             } else if (dataForm?.config?.isValidPublished === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ Xuất bản/Publish Form nhé!`, `00004`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to publish Form`, `00004`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải chọn "Không thu thập email/ Do not Collect" trong setting.`, `00001`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must select "Do not Collect" in setting.`, `00001`, "error");
             } else if (dataForm?.config?.isValidCollectEmail === "null") {
-                addChatError(chatErrors, `Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt thu thập email. Phải chọn "Không thu thập email/ Do not Collect" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `System cannot check config, please remember to turn off collect email`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidEditAnswer === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt cho phép chỉnh sửa câu trả lời trong setting.`, `00002`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must turn off "Allow editing responses" in setting.`, `00002`, "error");
             } else if (dataForm?.config?.isValidEditAnswer === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt "cho phép chỉnh sửa câu trả lời" trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Allow editing responses" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidLimitRes === "false") {
-                addChatError(chatErrors, `<b>Google Form!</b> Phải tắt mọi giới hạn trả lời trong setting.`, `00003`, "error");
+                addChatError(chatErrors, `<b>Google Form!</b> Must turn off "Limit responses to one per person" in setting.`, `00003`, "error");
             } else if (dataForm?.config?.isValidLimitRes === "null") {
-                addChatError(chatErrors, `<b>Google Form!</b> Hiện tại hệ thống không thể kiểm tra config, hãy nhớ tắt mọi giới hạn trả lời trong setting nhé!`, `00001`, "warning");
+                addChatError(chatErrors, `<b>Google Form!</b> System cannot check config, please remember to turn off "Limit responses to one per person" in setting`, `00001`, "warning");
             }
 
             if (dataForm?.config?.isValidCollectEmail === "true" &&
                 dataForm?.config?.isValidEditAnswer === "true" &&
                 dataForm?.config?.isValidLimitRes === "true" &&
                 dataForm?.config?.isValidPublished === "true") {
-                addChatError(chatErrors, `Tuyệt! Google form này setting OK. Hãy thiết lập model ứng với câu hỏi trên form và điền tỉ lệ nhân khẩu học nhé.`, `00005`, "note");
+                addChatError(chatErrors, `Perfect! Google form setting OK. Please set model for this form and fill ratio for demographic.`, `00005`, "note");
             }
         }
     };
@@ -618,11 +618,11 @@ export default function BuildDataForm() {
     return (
         <>
             <section className=" ">
-                <div className="container mx-auto px-4 pt-8 pb-6" data-aos="fade-up">
+                <div className=" " data-aos="fade-up">
 
                     {(isLoading) && <LoadingAbsolute />}
                     <div className="container mx-auto mb-8">
-                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-center text-gray-900">Điền theo mô hình NCKH</h1>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-3 text-left text-gray-900">Fill in the form with model</h1>
 
                         <FormTypeNavigation formId={dataForm?.form?.id} type={'build'} />
 

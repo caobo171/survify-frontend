@@ -14,11 +14,11 @@ export const FormInfoSection = ({ dataForm }: FormInfoSectionProps) => {
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">Thông tin Form</h3>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900">Form Information</h3>
             <div className="grid md:grid-cols-2 gap-4">
                 <div className="relative">
                     <label htmlFor="urlMain" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                        Link Form
+                        Form Link
                     </label>
                     <div className="flex">
                         <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
@@ -32,7 +32,7 @@ export const FormInfoSection = ({ dataForm }: FormInfoSectionProps) => {
                 </div>
                 <div className="relative">
                     <label htmlFor="urlCopy" className="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-600">
-                        Tên Form
+                        Form Name
                     </label>
                     <div className="flex">
                         <span className="inline-flex items-center px-3 text-gray-500 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
