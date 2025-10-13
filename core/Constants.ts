@@ -73,14 +73,13 @@ export enum QUESTION_TYPE {
 
 
 export const ORDER_STATUS = {
-  RUNNING: 'Đang chạy',
-  PAUSE: 'Tạm dừng',
-  FAILED: 'Thất bại',
-  CANCELED: 'Đã hủy',
-  SUCCESS: 'Hoàn thành',
+  RUNNING: 'Running',
+  PAUSE: 'Pause',
+  FAILED: 'Failed',
+  CANCELED: 'Canceled',
+  SUCCESS: 'Success',
   ERROR: 'ERROR',
 };
-
 
 export const LAYOUT_TYPES = {
   Admin: 'admin',
@@ -204,7 +203,7 @@ export const PULSES_TOKEN = 'My5wdWxzZXN1cnZleXM';
 
 export const PRICING_PACKAGES = [
   {
-    id: 'starter_package', 
+    id: 'starter_package',
     name: 'Starter package',
     price: 9,
     old_price: 15,
@@ -213,7 +212,7 @@ export const PRICING_PACKAGES = [
     paddle_price_id: 'pri_01k7by8zxbe9exh7zdssjxtpdf'
   },
   {
-    id: 'standard_package', 
+    id: 'standard_package',
     name: 'Standard package',
     price: 19,
     old_price: 35,
@@ -222,7 +221,7 @@ export const PRICING_PACKAGES = [
     paddle_price_id: 'pri_01k7bqr7pacsjwqt70y0cvy9tr'
   },
   {
-    id: 'expert_package', 
+    id: 'expert_package',
     name: 'Expert package',
     price: 49,
     old_price: 100,
