@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ChevronLeftIcon } from '@heroicons/react/24/outline';
 import { useMe } from '@/hooks/user';
 import { MODERATE_VARIABLE_PRICE, MEDIATOR_VARIABLE_PRICE, DEPENDENT_VARIABLE_PRICE, INDEPENDENT_VARIABLE_PRICE, READ_RESULT_PRICE } from '@/core/Constants';
+import PricePackages from '@/app/(inapp)/credit/_components/PricePackages';
 
 interface CreateDownloadOrderFormProps {
     userCredit: number;
@@ -86,19 +87,19 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
             )}
             {showTitle && (
                 <>
-                    <h3 className="text-xl sm:text-2xl font-bold mb-2 mt-2 sm:mt-0 text-right sm:text-center">TẢI DỮ LIỆU ĐẸP CHO MÔ HÌNH</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 mt-2 sm:mt-0 text-right sm:text-center">Download data for model</h3>
                     {modelName && <h6 className="text-sm text-gray-500 mb-4 text-center">{modelName}</h6>}
                 </>
             )}
             <div className="text-left">
                 <div className="mb-3 flex flex-col sm:flex-row items-start sm:items-center">
-                    <label htmlFor="credit" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Số dư tài khoản:</label>
+                    <label htmlFor="credit" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Account balance:</label>
                     <div className="w-full sm:w-1/2 p-2 rounded">
-                        <input type="text" readOnly className="bg-transparent w-full sm:text-right font-bold" id="credit" value={userCredit.toLocaleString() + ' VND'} />
+                        <input type="text" readOnly className="bg-transparent w-full sm:text-right font-bold" id="credit" value={userCredit.toLocaleString() + ' Credits'} />
                     </div>
                 </div>
                 <div className="mb-3 flex flex-col sm:flex-row items-start sm:items-center">
-                    <label htmlFor="num_request" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Số lượng mẫu:</label>
+                    <label htmlFor="num_request" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Number of samples:</label>
                     <div className="w-full sm:w-1/2">
                         <input
                             type="number"
@@ -116,7 +117,7 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
                 {/* Vietnamese SPSS analysis result option */}
                 {isSPSSModel && (
                     <div className="mb-3 flex flex-col sm:flex-row items-start sm:items-center">
-                        <label htmlFor="vn-spss-result-download" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Nhận kết quả phân tích SPSS:</label>
+                        <label htmlFor="vn-spss-result-download" className="w-full sm:w-1/2 font-sm mb-2 sm:mb-0 text-gray-700">Receive SPSS analysis result:</label>
                         <div className="w-full sm:w-1/2">
                             <div className="flex items-center">
                                 <input
@@ -131,7 +132,7 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
                                     className="h-4 w-4 focus:ring-blue-500 border-gray-300 rounded"
                                 />
                                 <label htmlFor="vn-spss-result-download" className="ml-2 text-sm text-gray-700">
-                                    <span className="block text-xs text-gray-500">Tick để nhận bản PDF (+{READ_RESULT_PRICE.toLocaleString()} VND phí cố định)</span>
+                                    <span className="block text-xs text-gray-500">Tick to receive PDF (+{READ_RESULT_PRICE.toLocaleString()} Credits fixed fee)</span>
                                 </label>
                             </div>
                         </div>
@@ -143,51 +144,51 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
             {!hidePayment && (
                 <div className="bg-blue-50 border border-blue-200 text-blue-800 rounded-lg p-6 my-6 shadow-sm">
                     <div className="flex flex-col sm:flex-row items-center justify-between border-b border-blue-200 pb-4 mb-4">
-                        <h3 className="text-lg sm:text-xl font-bold">TỔNG CỘNG:</h3>
-                        <div className="text-2xl font-bold text-blue-700">{total.toLocaleString()} VND</div>
+                        <h3 className="text-lg sm:text-xl font-bold">Total:</h3>
+                        <div className="text-2xl font-bold text-blue-700">{total.toLocaleString()} Credits</div>
                     </div>
 
                     {/* Pricing Breakdown */}
                     <div className="bg-white rounded-lg p-4 mb-3 border border-blue-100">
-                        <h4 className="font-medium text-blue-800 mb-3">Chi tiết giá:</h4>
+                        <h4 className="font-medium text-blue-800 mb-3">Price breakdown:</h4>
                         <div className="bg-gray-50 p-3 rounded-lg mb-4">
                             {(numModerateVariables || 0) > 0 && (
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm text-gray-600">
-                                        Biến điều tiết ({numModerateVariables} × {MODERATE_VARIABLE_PRICE.toLocaleString()}):
+                                        Moderate variables ({numModerateVariables} × {MODERATE_VARIABLE_PRICE.toLocaleString()}):
                                     </span>
                                     <span className="font-medium">
-                                        {((numModerateVariables || 0) * MODERATE_VARIABLE_PRICE).toLocaleString()} VND
+                                        {((numModerateVariables || 0) * MODERATE_VARIABLE_PRICE).toLocaleString()} Credits
                                     </span>
                                 </div>
                             )}
                             {(numMediatorVariables || 0) > 0 && (
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm text-gray-600">
-                                        Biến trung gian ({numMediatorVariables} × {MEDIATOR_VARIABLE_PRICE.toLocaleString()}):
+                                        Mediator variables ({numMediatorVariables} × {MEDIATOR_VARIABLE_PRICE.toLocaleString()}):
                                     </span>
                                     <span className="font-medium">
-                                        {((numMediatorVariables || 0) * MEDIATOR_VARIABLE_PRICE).toLocaleString()} VND
+                                        {((numMediatorVariables || 0) * MEDIATOR_VARIABLE_PRICE).toLocaleString()} Credits
                                     </span>
                                 </div>
                             )}
                             {(numIndependentVariables || 0) > 0 && (
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm text-gray-600">
-                                        Biến độc lập ({numIndependentVariables} × {INDEPENDENT_VARIABLE_PRICE.toLocaleString()}):
+                                        Independent variables ({numIndependentVariables} × {INDEPENDENT_VARIABLE_PRICE.toLocaleString()}):
                                     </span>
                                     <span className="font-medium">
-                                        {((numIndependentVariables || 0) * INDEPENDENT_VARIABLE_PRICE).toLocaleString()} VND
+                                        {((numIndependentVariables || 0) * INDEPENDENT_VARIABLE_PRICE).toLocaleString()} Credits
                                     </span>
                                 </div>
                             )}
                             {(numDependentVariables || 0) > 0 && (
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm text-gray-600">
-                                        Biến phụ thuộc ({numDependentVariables} × {DEPENDENT_VARIABLE_PRICE.toLocaleString()}):
+                                        Dependent variables ({numDependentVariables} × {DEPENDENT_VARIABLE_PRICE.toLocaleString()}):
                                     </span>
                                     <span className="font-medium">
-                                        {((numDependentVariables || 0) * DEPENDENT_VARIABLE_PRICE).toLocaleString()} VND
+                                        {((numDependentVariables || 0) * DEPENDENT_VARIABLE_PRICE).toLocaleString()} Credits
                                     </span>
                                 </div>
                             )}
@@ -195,8 +196,8 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
                             {/* Vietnamese SPSS result add-on breakdown */}
                             {isSPSSModel && isReadingAnalysisResult && (
                                 <div className="flex justify-between items-center mb-2">
-                                    <span className="text-sm text-gray-600">Kết quả phân tích SPSS  (phí cố định):</span>
-                                    <span className="font-medium text-purple-700">+{READ_RESULT_PRICE.toLocaleString()} VND</span>
+                                    <span className="text-sm text-gray-600">Analysis result (fixed fee):</span>
+                                    <span className="font-medium text-purple-700">+{READ_RESULT_PRICE.toLocaleString()} Credits</span>
                                 </div>
                             )}
                         </div>
@@ -205,14 +206,12 @@ const CreateDownloadOrderForm: React.FC<CreateDownloadOrderFormProps> = ({
                     {insufficientFunds && (
                         <div className="mt-4 p-4 bg-white rounded-lg border border-red-100">
                             <div className="p-3 bg-red-100 text-red-700 rounded-lg mb-4 text-center font-sm">
-                                ❌ KHÔNG ĐỦ SỐ DƯ, BẠN HÃY NẠP THÊM TIỀN NHÉ!
+                                ❌ You don't have enough credits, please recharge to continue!
                             </div>
-                            <h4 className="text-lg font-bold mb-3 text-center">Nạp thêm <span className="text-red-600">{(total - userCredit).toLocaleString()} VND</span> để tiếp tục</h4>
+                            <h4 className="text-lg font-bold mb-3 text-center">Please recharge <span className="text-red-600">{(total - userCredit).toLocaleString()} Credits</span> to continue</h4>
 
                             {bankInfo && (
-                                <PaymentInformation
-                                    bankInfo={bankInfo}
-                                    className="space-y-3 mt-4 bg-gray-50 p-3 rounded-lg"
+                                <PricePackages
                                 />
                             )}
                         </div>

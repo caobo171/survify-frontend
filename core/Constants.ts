@@ -117,11 +117,11 @@ export default Constants;
 
 
 export const OPTIONS_DATA = [
-  "other (bỏ qua-không điền)",
+  "other (ignore - no need to fill)",
   "name",
   "email",
   "phone",
-  "custom (nội dung tùy chỉnh)"
+  "custom (custom data)"
 ];
 
 export const OPTIONS_DELAY_ENUM = {
@@ -134,29 +134,29 @@ export const OPTIONS_DELAY_ENUM = {
 
 export const OPTIONS_DELAY = {
   [OPTIONS_DELAY_ENUM.NO_DELAY]: {
-    name: "Không cần điền rải",
+    name: "No delay",
     price: 350,
-    description: "Gửi liên tiếp không giãn cách"
+    description: "Send without delay"
   },
   [OPTIONS_DELAY_ENUM.SHORT_DELAY]: {
-    name: "Điền giãn cách ngắn",
+    name: "Short delay",
     price: 400,
-    description: "Gửi với giãn cách 1-5 phút"
+    description: "Send with 1-5 minutes delay between each request"
   },
   [OPTIONS_DELAY_ENUM.STANDARD_DELAY]: {
-    name: "Điền giãn cách tiêu chuẩn",
+    name: "Standard delay",
     price: 450,
-    description: "Gửi với giãn cách 1-10 phút"
+    description: "Send with 1-10 minutes delay between each request"
   },
   [OPTIONS_DELAY_ENUM.LONG_DELAY]: {
-    name: "Điền giãn cách dài",
+    name: "Long delay",
     price: 500,
-    description: "Gửi với giãn cách 1-20 phút"
+    description: "Send with 1-20 minutes delay between each request"
   },
   [OPTIONS_DELAY_ENUM.SPECIFIC_DELAY]: {
-    name: "Điền giãn cách xác định chính xác thời gian",
+    name: "Specific delay",
     price: 600,
-    description: "Gửi với giãn cách phù hợp với thời gian đã chọn"
+    description: "Send with specific delay between each request"
   }
 
 }
@@ -178,8 +178,8 @@ export const BANK_INFO = {
 
 
 export const ORDER_TYPE = {
-  AUTOFILL: 'Điền theo tỉ lệ',
-  PREFILL: 'Data có trước',
+  AUTOFILL: 'Auto fill',
+  PREFILL: 'Pre fill data',
   AGENT: 'Agent',
   DATA_MODEL: 'Data model'
 }
@@ -187,17 +187,17 @@ export const ORDER_TYPE = {
 
 
 export const REFER_PERCENT = 15;
-export const MIN_DRAW_CREDIT = 100000;
+export const MIN_DRAW_CREDIT = 100;
 export const AI_PRICE = 1650;
 
 export const MODEL_PRICE = 250;
 
-export const MODERATE_VARIABLE_PRICE = 80000;
-export const MEDIATOR_VARIABLE_PRICE = 80000;
-export const DEPENDENT_VARIABLE_PRICE = 20000;
-export const INDEPENDENT_VARIABLE_PRICE = 30000;
+export const MODERATE_VARIABLE_PRICE = 80;
+export const MEDIATOR_VARIABLE_PRICE = 80;
+export const DEPENDENT_VARIABLE_PRICE = 20;
+export const INDEPENDENT_VARIABLE_PRICE = 30;
 
-export const READ_RESULT_PRICE = 50000;
+export const READ_RESULT_PRICE = 50;
 
 export const PULSES_TOKEN = 'My5wdWxzZXN1cnZleXM';
 
@@ -240,36 +240,36 @@ export const AI_CASES = [
     id: 'phan_tich_quyet_dinh_nhan_viec',
     numRequest: 400,
     demographicGoal: `
-    - Giới tính của Anh/Chị/Bạn? gần 60% nữ
-    - Độ tuổi của Anh/Chị/Bạn?
-      18-22 tuổi: 55.6%
-      23-25 tuổi: 35,7%
-      26-28 tuổi: 8,7%
-    - Trình độ học vấn của Anh/Chị/Bạn là gì?
+    - Gender? Nearly 60% female
+    - Age?
+      18-22 years old: 55.6%
+      23-25 years old: 35,7%
+      26-28 years old: 8,7%
+    - Education level?
       Đại học: gần 80%, còn lại chia ra
-    - Anh/Chị/Bạn đang là?
-      Sinh viên: 29.3%
-      Vừa tốt nghiệp: 40.1%
-      Đã đi làm dưới 2 năm: 20.2%
-      Đã đi làm từ 2 năm trở lên: 10.4%
-    - Anh/Chị/Bạn đã từng ứng tuyển vào bao nhiêu công ty?
-      1 - 2 công ty: 40%
-      3 - 5 công ty: 35%
-      Hơn 5 công ty: 25%
-    - Công ty gần nhất Anh/Chị/Bạn ứng tuyển là khi nào?
-      Trong vòng 12 tháng qua: 60%
-      Từ 1 đến dưới 3 năm trước: 35%
-      Hơn 3 năm trước: 5%
+    - Current status?
+      Student: 29.3%
+      Recent graduate: 40.1%
+      Working less than 2 years: 20.2%
+      Working for more than 2 years: 10.4%
+    - Number of companies you have applied to?
+      1 - 2 companies: 40%
+      3 - 5 companies: 35%
+      More than 5 companies: 25%
+    - When was the nearest company you applied to?
+      Within the last 12 months: 60%
+      From 1 to less than 3 years ago: 35%
+      More than 3 years ago: 5%
 `,
     spssGoal: `
-      Thang đo Likert từ 1-5
-      Dùng phân tích hồi quy, không sử dụng SEM
-      Giả thuyết H1: Thông tin tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại TP. Hồ Chí Minh. ⇒ CHẤP NHẬN
-      Giả thuyết H2: Công nghệ tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại TP. Hồ Chí Minh. ⇒ CÓ THỂ BÁC BỎ
-      Giả thuyết H3: Tương tác với nhà tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại Thành phố Hồ Chí Minh. ⇒ CHẤP NHẬN
-      Giả thuyết H4: Thái độ của nhà tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại Thành phố Hồ Chí Minh. ⇒ CHẤP NHẬN
-      Giả thuyết H5: Nhận thức công bằng trong tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại Thành phố Hồ Chí Minh. ⇒ CHẤP NHẬN
-      Giả thuyết H6: Tốc độ của quy trình tuyển dụng có tác động tích cực đến quyết định nhận việc của Gen Z tại Thành phố Hồ Chí Minh. ⇒ CHẤP NHẬN
+      Likert scale from 1-5
+      Use regression analysis, do not use SEM
+      Hypothesis H1: Recruitment information has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ ACCEPT
+      Hypothesis H2: Recruitment technology has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ MAYBE
+      Hypothesis H3: Interaction with the employer has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ ACCEPT
+      Hypothesis H4: The attitude of the employer has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ ACCEPT
+      Hypothesis H5: Awareness of fairness in recruitment has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ ACCEPT
+      Hypothesis H6: The speed of the recruitment process has a positive impact on the decision to accept a job by Gen Z in Ho Chi Minh City. ⇒ ACCEPT
     `,
     image: 'phan_tich_quyet_dinh_nhan_viec.png',
     result_report_url: 'phan_tich_quyet_dinh_nhan_viec.pdf',
@@ -284,11 +284,11 @@ export const AI_CASES = [
     Mô hình hồi quy, 5 biến độc lập, 1 biến phụ thuộc, thang đo likert 5
     phân tích và đánh giá cách TikTok Shop ảnh hưởng đến hành vi và mô hình tiêu dùng của thế hệ Gen Z tại Đà Nẵng, từ đó đề xuất giải pháp cho doanh nghiệp trong việc tiếp cận nhóm khách hàng này hiệu quả hơn. 
     Chấp nhận tất cả các giả thuyết sau
-    Sự lan truyền nội dung tác động tích cực đến Quyết định mua hàng trên Tiktok Shop 
-    Thái độ xã hội/ tâm lý đám đông tác động tích cực đến Quyết định mua hàng trên Tiktok Shop 
-    Trào lưu tiêu dùng tức thời tác động tích cực đến Quyết định mua hàng trên Tiktok Shop 
-    Tiện ích mua hàng tác động tích cực đến Quyết định mua hàng trên Tiktok Shop 
-    Âm thanh, hình ảnh hấp dẫn tác động tích cực đến Quyết định mua hàng trên Tiktok Shop
+    The spread of content has a positive impact on the decision to buy on Tiktok Shop
+    Social/psychological influence has a positive impact on the decision to buy on Tiktok Shop
+    Trending consumption has a positive impact on the decision to buy on Tiktok Shop
+    Convenience of shopping has a positive impact on the decision to buy on Tiktok Shop
+    Attractive sound and images have a positive impact on the decision to buy on Tiktok Shop
     `,
     image: 'phan_tich_quyet_dinh_mua_hang_genz.png',
     result_report_url: 'phan_tich_quyet_dinh_mua_hang_genz.pdf',
@@ -298,18 +298,18 @@ export const AI_CASES = [
   {
     id: 'phan_tich_su_hai_long_kh',
     numRequest: 173,
-    demographicGoal: `Ngẫu nhiên sao cho hợp lý`,
+    demographicGoal: `Randomly distributed`,
     spssGoal: `
-    Giả thiết TC (Khả năng tiếp cận), NC (Tính nhanh chóng), AT (An toàn), TN (Tiện nghi, thoải mái), CX (Tính chính xác), và có quan hệ cùng chiều với sự hài lòng của khách hàng.
-    Chấp nhận/ bác bỏ giả thuyết nào: ngẫu nhiện 
-    Có loại bỏ biến quan sát nào không: ngẫu nhiên
-    Thang đo dự thảo chất lượng dịch vụ trên tuyến buýt số 10 được xây dựng bởi các nhân tố tác động đến sự hài lòng khách hàng được xác định gồm 5 nhân tố với 25 biến quan sát.
-    Thành phần Khả năng tiếp cận gồm 6 biến quan sát được mã hóa là: TC1 – TC6
-    Thành phần Tính nhanh chóng gồm 4 biến quan sát được mã hóa là: NC1 – NC4
-    Thành phần An toàn gồm 4 biến quan sát được mã hóa là: AT1 – AT4
-    Thành phần Tính chính xác gồm 3 biến quan sát được mã hóa là: CX1 – CX3
-    Thành phần Tiện nghi, thoải mái gồm 5 biến quan sát được mã hóa là: TN1 – TN5
-    Thành phần Sự hài lòng gồm 3 biến quan sát được mã hóa là: SHL1 – SHL3
+    Hypothesis TC (Accessibility), NC (Speed), AT (Safety), TN (Convenience, comfort), CX (Accuracy), and have a positive correlation with customer satisfaction.
+    Accept/ reject any hypothesis: randomly 
+    Remove any observation variables: randomly
+    The quality of service on bus number 10 is built based on 5 factors affecting customer satisfaction, which are determined by 25 observation variables.
+    The component of Accessibility includes 6 observation variables encoded as: TC1 – TC6
+    The component of Speed includes 4 observation variables encoded as: NC1 – NC4
+    The component of Safety includes 4 observation variables encoded as: AT1 – AT4
+    The component of Accuracy includes 3 observation variables encoded as: CX1 – CX3
+    The component of Convenience, comfort includes 5 observation variables encoded as: TN1 – TN5
+    The component of Customer satisfaction includes 3 observation variables encoded as: SHL1 – SHL3
 
     `,
     image: 'phan_tich_su_hai_long_kh.png',

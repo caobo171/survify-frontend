@@ -20,7 +20,7 @@ export default function AffiliateComponent() {
     // You might want to redirect to a registration form or show a modal
     if (res.data.code == Code.SUCCESS) {
       
-      Toast.success('Đăng kí thành công');
+      Toast.success('Register as partner successfully');
     } else {
       Toast.error(res.data.message);
     }
@@ -35,25 +35,25 @@ export default function AffiliateComponent() {
         {/* Affiliate Program Information */}
         <div className="bg-white rounded-xl p-8 shadow-md border border-gray-100">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold mb-3">Lưu ý chương trình affiliate</h1>
-            <p className="text-gray-600">Các chế độ ưu đãi có thể thay đổi tùy theo điểm kinh doanh</p>
+            <h1 className="text-2xl font-bold mb-3">Affiliate Program Information</h1>
+            <p className="text-gray-600">The benefits may change depending on the business</p>
           </div>
 
           <div className="space-y-8">
             <div className="bg-primary-50 p-5 rounded-lg border-l-4 border-primary-500">
-              <h2 className="text-xl font-semibold mb-3 text-primary-700">Quyền lợi của bạn:</h2>
+              <h2 className="text-xl font-semibold mb-3 text-primary-700">Your benefits:</h2>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                <li>Chỉ được tính affiliate với tài khoản giới thiệu đăng kí mới.</li>
-                <li>Survify sẽ tặng bạn <span className="font-semibold text-primary-600">{REFER_PERCENT}%</span> trên mỗi giao dịch nạp tiền/thanh công của người được giới thiệu.</li>
-                <li>Hoa hồng phải đạt <span className="font-semibold text-primary-600">{MIN_DRAW_CREDIT.toLocaleString()} VND</span> mới được yêu cầu rút tiền.</li>
-                <li>Tài khoản đăng kí lại hoặc lạm dụng, spam sẽ bị từ chối tính affiliate.</li>
+                <li>Only affiliate with new accounts introduced.</li>
+                <li>Survify will give you <span className="font-semibold text-primary-600">{REFER_PERCENT}%</span> on each deposit/transaction of the person introduced.</li>
+                <li>The commission must reach <span className="font-semibold text-primary-600">{MIN_DRAW_CREDIT.toLocaleString()} Credits</span> before withdrawal.</li>
+                <li>Accounts registered again or abuse, spam will be rejected.</li>
               </ul>
             </div>
 
             <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-500">
-              <h2 className="text-xl font-semibold mb-3 text-green-700">Quyền lợi của bạn bè được giới thiệu:</h2>
+              <h2 className="text-xl font-semibold mb-3 text-green-700">Benefits of your introduced friends:</h2>
               <ul className="list-disc pl-6 text-gray-700">
-                <li>Được tặng ngay <span className="font-semibold text-green-600">5000 credit</span> vào tài khoản đăng kí mới.</li>
+                <li>Get <span className="font-semibold text-green-600">5000 credit</span> immediately into the new account.</li>
               </ul>
             </div>
           </div>
@@ -67,14 +67,14 @@ export default function AffiliateComponent() {
               {loading ? (
                 <div className="flex items-center justify-center">
                   <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                  <span>Đang đăng kí...</span>
+                  <span>Loading...</span>
                 </div>
               ) : (
                 <div className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>Đăng kí trở thành Partner</span>
+                  <span>Register as partner</span>
                 </div>
               )}
             </button>

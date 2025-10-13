@@ -30,7 +30,13 @@ export function SidebarLayoutWrapper({ children }: PropsWithChildren) {
           { name: 'Dashboard', href: '/', icon: HomeIcon },
           { name: 'Fill survey', href: '/form/create', icon: BookOpenIcon },
           { name: 'Research model', href: '/data/builder', id: 'build_data', icon: CubeIcon },
-          { name: 'Data service', href: '/data/encode', icon: ChartBarSquareIcon },
+          {
+            name: 'Data service', href: '/data/encode', icon: ChartBarSquareIcon, subitems: [
+              { name: 'Encode data', href: '/data/encode', icon: ChartBarSquareIcon },
+              { name: 'Analyze data', href: '/data/analyze', icon: ChartBarSquareIcon },
+              { name: 'Export data', href: '/data/export', icon: ChartBarSquareIcon },
+            ]
+          },
 
           { name: 'Credit', href: '/credit', icon: CurrencyDollarIcon },
           { name: 'Affiliate', href: '/affiliate', icon: CreditCardIcon },

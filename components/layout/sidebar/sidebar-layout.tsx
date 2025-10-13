@@ -3,7 +3,7 @@
 import { useMe } from '@/hooks/user';
 import { MeFunctions } from '@/store/me/functions';
 import { Dialog, Menu, MenuButton, MenuItem, MenuItems, Transition, TransitionChild } from '@headlessui/react';
-import { Bars3Icon, BellIcon, ChevronDownIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, BellIcon, ChevronDownIcon, ChevronRightIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Fragment, PropsWithChildren, useEffect, useState } from 'react';
@@ -11,9 +11,10 @@ import { Fragment, PropsWithChildren, useEffect, useState } from 'react';
 type NavigationType = {
   name: string;
   href: string;
-  icon: React.ElementType;
+  icon?: React.ElementType;
   default?: boolean;
   count?: number;
+  subitems?: NavigationType[];
 };
 
 type SectionType = { id: string; name: string; options: NavigationType[] };
@@ -22,6 +23,7 @@ export function SidebarLayout(
   props: PropsWithChildren<{ sections: SectionType[] }>
 ) {
   const [selectedHref, setSelectedHref] = useState<string>('');
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const me = useMe();
 
@@ -31,6 +33,18 @@ export function SidebarLayout(
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const toggleExpanded = (itemName: string) => {
+    setExpandedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemName)) {
+        newSet.delete(itemName);
+      } else {
+        newSet.add(itemName);
+      }
+      return newSet;
+    });
+  };
+
   function getSections() {
     return (
       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -39,37 +53,110 @@ export function SidebarLayout(
             <div className="text-xs/6 font-semibold text-gray-400">{section.name}</div>
             <ul role="list" className="-mx-2 mt-2 space-y-1 list-none">
               {section.options.map((option) => {
+                const hasSubitems = option.subitems && option.subitems.length > 0;
+                const isExpanded = expandedItems.has(option.name);
                 const active = selectedHref == option.href || option.default;
+                const hasActiveSubitem = hasSubitems && option.subitems?.some(
+                  (subitem) => selectedHref === subitem.href
+                );
 
                 return (
                   <li key={option.name}>
-                    <Link
-                      href={option.href}
-                      className={clsx(
-                        active
-                          ? 'bg-primary-50 text-primary'
-                          : 'text-gray-700 hover:bg-gray-100',
-                        'group flex gap-x-2 rounded-md px-2 py-2 text-sm'
-                      )}
-                      onClick={() => setSelectedHref(option.href)}
-                    >
-                      <option.icon
-                        className={clsx(
-                          active ? 'text-primary' : 'text-gray-700',
-                          'h-5 w-auto shrink-0'
-                        )}
-                        aria-hidden="true"
-                      />
-                      {option.name}
-                      {option.count ? (
-                        <span
-                          className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
-                          aria-hidden="true"
+                    {hasSubitems ? (
+                      <div>
+                        <button
+                          onClick={() => toggleExpanded(option.name)}
+                          className={clsx(
+                            active || hasActiveSubitem
+                              ? 'bg-primary-50 text-primary'
+                              : 'text-gray-700 hover:bg-gray-100',
+                            'group flex w-full items-center gap-x-2 rounded-md px-2 py-2 text-sm'
+                          )}
                         >
-                          {option.count}
-                        </span>
-                      ) : null}
-                    </Link>
+                          {option.icon && (
+                            <option.icon
+                              className={clsx(
+                                active || hasActiveSubitem ? 'text-primary' : 'text-gray-700',
+                                'h-5 w-auto shrink-0'
+                              )}
+                              aria-hidden="true"
+                            />
+                          )}
+                          <span className="flex-1 text-left">{option.name}</span>
+                          <ChevronRightIcon
+                            className={clsx(
+                              'h-4 w-4 transition-transform duration-200',
+                              isExpanded ? 'rotate-90' : '',
+                              active || hasActiveSubitem ? 'text-primary' : 'text-gray-400'
+                            )}
+                            aria-hidden="true"
+                          />
+                        </button>
+                        {isExpanded && (
+                          <ul className="mt-1 space-y-1 list-none">
+                            {option.subitems?.map((subitem) => {
+                              const subActive = selectedHref === subitem.href;
+                              return (
+                                <li key={subitem.name}>
+                                  <Link
+                                    href={subitem.href}
+                                    className={clsx(
+                                      subActive
+                                        ? 'bg-primary-50 text-primary'
+                                        : 'text-gray-600 hover:bg-gray-50',
+                                      'group flex gap-x-2 rounded-md py-2 pr-2 text-sm items-center',
+                                      subitem.icon ? 'pl-8' : 'pl-6'
+                                    )}
+                                    onClick={() => setSelectedHref(subitem.href)}
+                                  >
+                                    {subitem.icon && (
+                                      <subitem.icon
+                                        className={clsx(
+                                          subActive ? 'text-primary' : 'text-gray-500',
+                                          'h-4 w-auto shrink-0'
+                                        )}
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                    {subitem.name}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={option.href}
+                        className={clsx(
+                          active
+                            ? 'bg-primary-50 text-primary'
+                            : 'text-gray-700 hover:bg-gray-100',
+                          'group flex gap-x-2 rounded-md px-2 py-2 text-sm'
+                        )}
+                        onClick={() => setSelectedHref(option.href)}
+                      >
+                        {option.icon && (
+                          <option.icon
+                            className={clsx(
+                              active ? 'text-primary' : 'text-gray-700',
+                              'h-5 w-auto shrink-0'
+                            )}
+                            aria-hidden="true"
+                          />
+                        )}
+                        {option.name}
+                        {option.count ? (
+                          <span
+                            className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
+                            aria-hidden="true"
+                          >
+                            {option.count}
+                          </span>
+                        ) : null}
+                      </Link>
+                    )}
                   </li>
                 );
               })}

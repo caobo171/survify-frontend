@@ -69,16 +69,16 @@ const CreditPage: FC<{}> = () => {
 
                     {/* Important Notes */}
                     <div className="border border-gray-100 rounded-lg overflow-hidden mb-6">
-                        <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">ĐẶC BIỆT CHÚ Ý</h3>
+                        <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">IMPORTANT NOTES</h3>
 
                         <div className="p-6">
                             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                                <li>Survify sẽ hoàn tiền 100% nếu Tool lỗi / sử dụng dịch vụ không thành công.</li>
-                                <li>Nạp tối thiểu: 10,000 đ. Cố tình nạp dưới mức tối thiểu sai cú pháp không hỗ trợ dưới mọi hình thức.</li>
-                                <li>Nạp tiền sai cú pháp vui lòng liên hệ hỗ trợ đính kèm hóa đơn chuyển tiền và tên đăng nhập để được hỗ trợ.</li>
-                                <li>Chỉ hỗ trợ các giao dịch nạp tiền sai cú pháp trong vòng 30 ngày kể từ ngày chuyển tiền, quá 30 ngày KHÔNG xử lý dưới mọi hình thức!</li>
-                                <li>Nên chuyển tiền nhanh 24/7 để được cộng tiền ngay sau vài phút. Trường hợp chuyển tiền chậm sẽ được cộng tiền sau khi ngân hàng xử lý giao dịch.</li>
-                                <li>Dữ liệu lịch sử nạp tiền có thể sẽ tự động xóa sau 30 ngày kể từ ngày nạp tiền!</li>
+                                <li>Survify will refund 100% if the tool fails / the service is not used successfully.</li>
+                                <li>Minimum deposit: 10,000 Credits. Intentionally depositing below the minimum amount is not supported under any circumstances.</li>
+                                <li>Please contact support with the transfer receipt and login name to receive support.</li>
+                                <li>Only support transactions that are deposited incorrectly within 30 days from the transfer date. After 30 days, KHÔNG xử lý under any circumstances!</li>
+                                <li>Transfer money as soon as possible 24/7 to receive money immediately after a few minutes. In case of slow transfer, money will be added after the bank processes the transaction.</li>
+                                <li>Transfer history data may be automatically deleted after 30 days from the transfer date!</li>
                             </ul>
                         </div>
                     </div>

@@ -96,10 +96,14 @@ export default function DataEncode() {
 
                 <div className="container mx-auto" data-aos="fade-up">
                     {/* Header */}
-                    <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold mb-3">Mã hóa data từ kết quả có sẵn</h2>
+
+
+                    <div className="mb-8 text-left">
+                        <h2 className="text-3xl font-bold mb-3">
+                            Encode data <span className="text-blue-600">from existing results</span>
+                        </h2>
                         <p className="text-gray-600">
-                            Nhập link edit form và link sheet data vào ô dưới đây. Hãy nhớ mở quyền truy cập cho cả sheet và form.
+                            Enter link edit form and link sheet data into the box below. Remember to open access to both sheet and form.
                         </p>
                     </div>
 
@@ -110,14 +114,14 @@ export default function DataEncode() {
                             className="p-6"
                         >
                             <InlineFormItem
-                                label="Điền Edit Link Form"
+                                label="Enter Edit Link Form"
                                 className="mb-6"
                                 error={errors.form_link?.message}
                             >
                                 <Controller
                                     render={({ field }) => (
                                         <Input
-                                            placeholder='Điền form edit vào đây'
+                                            placeholder='Enter form edit link here'
                                             className="w-full"
                                             type="text"
                                             {...field}
@@ -130,14 +134,14 @@ export default function DataEncode() {
                                 />
                             </InlineFormItem>
                             <InlineFormItem
-                                label="Điền Link sheet data"
+                                label="Enter Link sheet data"
                                 className="mb-6"
                                 error={errors.sheet_data_link?.message}
                             >
                                 <Controller
                                     render={({ field }) => (
                                         <Input
-                                            placeholder='Điền Link sheet data vào đây'
+                                            placeholder='Enter sheet data link here'
                                             className="w-full"
                                             type="text"
                                             {...field}
@@ -156,7 +160,7 @@ export default function DataEncode() {
                                 loading={isSubmitting || loading}
                                 htmlType="submit"
                             >
-                                <span>Mã hoá dữ liệu ngay</span>
+                                <span>Encode data now</span>
                             </Button>
 
                             <CSVLink
@@ -181,7 +185,7 @@ export default function DataEncode() {
                     {/* Guide Section */}
                     <div className="space-y-12">
                         <div className="border border-gray-100 rounded-lg overflow-hidden">
-                            <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">Hướng Dẫn Sử Dụng</h3>
+                            <h3 className="text-xl font-bold p-4 bg-gray-50 border-b border-gray-100">Usage Guide</h3>
 
                             <div className="p-6">
                                 <div className="space-y-4">

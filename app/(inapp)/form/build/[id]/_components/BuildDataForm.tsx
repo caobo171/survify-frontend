@@ -513,7 +513,7 @@ export default function BuildDataForm() {
             const inputId = selectId.replace("select-", "custom-");
             const textarea = document.getElementById(inputId) as HTMLTextAreaElement;
             if (textarea) {
-                textarea.style.display = select.value === "custom (nội dung tùy chỉnh)" ? "block" : "none";
+                textarea.style.display = select.value === "custom (custom data)" ? "block" : "none";
             }
         }
     };
