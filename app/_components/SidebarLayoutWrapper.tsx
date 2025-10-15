@@ -40,7 +40,7 @@ export function SidebarLayoutWrapper({ children }: PropsWithChildren) {
 
           { name: 'Credit', href: '/credit', icon: CurrencyDollarIcon },
           { name: 'Affiliate', href: '/affiliate', icon: CreditCardIcon },
-          // { name: 'About', href: 'https://survify.info' , icon: SpeakerWaveIcon},
+          // { name: 'About', href: 'https://survify.net' , icon: SpeakerWaveIcon},
         ],
       },
 

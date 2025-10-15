@@ -24,7 +24,7 @@ export async function generateMetadata(
       languages: MetaData.defaultLanguages,
     },
     openGraph: {
-      images: ['https://app.survify.info/static/img/background.jpg', ...previousImages],
+      images: ['https://app.survify.net/static/img/background.jpg', ...previousImages],
     },
   };
 }

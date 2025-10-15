@@ -8,13 +8,13 @@ import { Container } from '../container/container';
 
 const navigation = {
   detail: [
-    { name: 'Về survify', href: 'https://survify.info' },
+    { name: 'Về survify', href: 'https://survify.net' },
    
   ],
   social: [
     {
       name: 'Gmail',
-      href: 'mailto:survify.info@gmail.com',
+      href: 'mailto:survify.net@gmail.com',
       icon: '/static/svg/gmail.svg',
     },
     {
@@ -29,7 +29,7 @@ const navigation = {
     },
     {
       name: 'Tiktok',
-      href: 'https://www.tiktok.com/@survify.info',
+      href: 'https://www.tiktok.com/@survify.net',
       icon: '/static/svg/tiktok.svg',
     }
     // {

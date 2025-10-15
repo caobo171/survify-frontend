@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Users - Admin - Survify',
   description: 'Users - Admin - Survify',
   alternates: {
-    canonical: 'https://app.survify.info/admin/users',
+    canonical: 'https://app.survify.net/admin/users',
   },
 };
 
