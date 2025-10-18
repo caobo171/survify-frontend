@@ -31,7 +31,7 @@ interface TabData {
   data: Record<string, any>
 }
 
-const SmartPLSResult = ({ 
+const SmartPLSResult = ({
   data,
   title,
   className,
@@ -43,33 +43,22 @@ const SmartPLSResult = ({
   // Define tabs with specialized components
   const tabs = [
     {
+      key: 'inner_model',
+      label: 'Significance Testing',
+      hasData: data?.raw_inner_model && Object.keys(data.raw_inner_model).length > 0,
+      component: <InnerModelResults
+        innerModel={data?.raw_inner_model || {}}
+        questions={questions}
+        mappingQuestionToVariable={mappingQuestionToVariable}
+        model={model}
+      />
+    },
+    {
       key: 'outer_model',
       label: 'Outer Model',
       hasData: data?.raw_outer_model && Object.keys(data.raw_outer_model).length > 0,
-      component: <OuterModelResults 
-        outerModel={data?.raw_outer_model || {}} 
-        questions={questions}
-        mappingQuestionToVariable={mappingQuestionToVariable}
-        model={model}
-      />
-    },
-    {
-      key: 'cross_loadings',
-      label: 'Cross Loadings',
-      hasData: data?.raw_crossloadings && Object.keys(data.raw_crossloadings).length > 0,
-      component: <CrossLoadingsResults 
-        crossLoadings={data?.raw_crossloadings || {}} 
-        questions={questions}
-        mappingQuestionToVariable={mappingQuestionToVariable}
-        model={model}
-      />
-    },
-    {
-      key: 'unidimensionality',
-      label: 'Reliability',
-      hasData: data?.raw_unidimensionality && Object.keys(data.raw_unidimensionality).length > 0,
-      component: <UnidimensionalityResults 
-        unidimensionality={data?.raw_unidimensionality || {}} 
+      component: <OuterModelResults
+        outerModel={data?.raw_outer_model || {}}
         questions={questions}
         mappingQuestionToVariable={mappingQuestionToVariable}
         model={model}
@@ -79,13 +68,37 @@ const SmartPLSResult = ({
       key: 'inner_summary',
       label: 'Inner Summary',
       hasData: data?.raw_inner_summary && Object.keys(data.raw_inner_summary).length > 0,
-      component: <InnerSummaryResults 
-        innerSummary={data?.raw_inner_summary || {}} 
+      component: <InnerSummaryResults
+        innerSummary={data?.raw_inner_summary || {}}
         questions={questions}
         mappingQuestionToVariable={mappingQuestionToVariable}
         model={model}
       />
     },
+
+    {
+      key: 'cross_loadings',
+      label: 'Cross Loadings',
+      hasData: data?.raw_crossloadings && Object.keys(data.raw_crossloadings).length > 0,
+      component: <CrossLoadingsResults
+        crossLoadings={data?.raw_crossloadings || {}}
+        questions={questions}
+        mappingQuestionToVariable={mappingQuestionToVariable}
+        model={model}
+      />
+    },
+    {
+      key: 'unidimensionality',
+      label: 'Reliability',
+      hasData: data?.raw_unidimensionality && Object.keys(data.raw_unidimensionality).length > 0,
+      component: <UnidimensionalityResults
+        unidimensionality={data?.raw_unidimensionality || {}}
+        questions={questions}
+        mappingQuestionToVariable={mappingQuestionToVariable}
+        model={model}
+      />
+    },
+
     // {
     //   key: 'path_coefficients',
     //   label: 'Path Coefficients',
@@ -97,23 +110,13 @@ const SmartPLSResult = ({
     //     model={model}
     //   />
     // },
-    {
-      key: 'inner_model',
-      label: 'Significance Testing',
-      hasData: data?.raw_inner_model && Object.keys(data.raw_inner_model).length > 0,
-      component: <InnerModelResults 
-        innerModel={data?.raw_inner_model || {}} 
-        questions={questions}
-        mappingQuestionToVariable={mappingQuestionToVariable}
-        model={model}
-      />
-    },
+
     {
       key: 'effects',
       label: 'Effects Analysis',
       hasData: data?.raw_effects && Object.keys(data.raw_effects).length > 0,
-      component: <EffectsResults 
-        effects={data?.raw_effects || {}} 
+      component: <EffectsResults
+        effects={data?.raw_effects || {}}
         questions={questions}
         mappingQuestionToVariable={mappingQuestionToVariable}
         model={model}
@@ -123,8 +126,8 @@ const SmartPLSResult = ({
       key: 'htmt',
       label: 'HTMT',
       hasData: data?.raw_htmt && Object.keys(data.raw_htmt).length > 0,
-      component: <HTMTResults 
-        htmtMatrix={data?.raw_htmt || {}} 
+      component: <HTMTResults
+        htmtMatrix={data?.raw_htmt || {}}
         questions={questions}
         mappingQuestionToVariable={mappingQuestionToVariable}
         model={model}
@@ -145,8 +148,8 @@ const SmartPLSResult = ({
       key: 'vif',
       label: 'VIF',
       hasData: data?.raw_vif?.inner_vif && data?.raw_vif?.outer_vif,
-      component: <VIFResults 
-        vifResults={data?.raw_vif} 
+      component: <VIFResults
+        vifResults={data?.raw_vif}
         questions={questions}
         mappingQuestionToVariable={mappingQuestionToVariable}
         model={model}
